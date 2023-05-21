@@ -10,7 +10,7 @@ public class Plataforma {
     public Plataforma(ArrayList<EmpresaTransporte> listaEmpresas) {
         this.listaEmpresas= listaEmpresas;
     }
-    public ArrayList<Viaje> buscarViaje(String origen, String destino, LocalDateTime fecha){
+    public ArrayList<Viaje> buscarViaje(String origen, String destino, LocalDate fecha){
         ArrayList<Viaje> v= new ArrayList<Viaje>();
         for (EmpresaTransporte e : listaEmpresas) {
             v.addAll(e.obtenerViajes(origen,destino,fecha));

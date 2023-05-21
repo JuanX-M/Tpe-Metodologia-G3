@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -12,18 +13,13 @@ public class EmpresaTransporte {
         //this.reservas = new RegistroCompras();
     }
 
-    public ArrayList<Viaje> obtenerViajes(String origen, String destino, LocalDateTime fecha) {
-        ArrayList<Viaje> viajesDisponibles = new ArrayList<>();
-
+    public ArrayList<Viaje> obtenerViajes(String origen, String destino, LocalDate fecha) {
+        ArrayList<Viaje> viajesDisponibles = new ArrayList<Viaje>();
         for (Omnibus bus : omnibus) {
-            for (Viaje viaje : bus.getViajes()) {
-                if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino)
-                        && viaje.getFecha().isEqual(fecha)) {
-                    viajesDisponibles.add(viaje);
+            for (Viaje viaje : bus.getViajes(origen, destino, fecha)) {
+                viajesDisponibles.add(viaje);
                 }
             }
-        }
-
         return viajesDisponibles;
     }
 
