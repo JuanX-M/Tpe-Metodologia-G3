@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 public class Omnibus {
     private String nombreEmpresa;
@@ -20,6 +21,14 @@ public class Omnibus {
         copia.addAll(this.itinerario);
         return copia;
     }
+    public ArrayList<Viaje> getViajes(String origen, String destino, LocalDate fecha){
+        ArrayList<Viaje> viajes = new ArrayList<>();
+        for (Viaje viaje : this.getItinerario()) {
+            if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && viaje.getFecha().equals(fecha)) {
+                viajes.add(viaje);
+            }
+        }
+        return viajes;    }
     public ArrayList<Asiento> getAsientos(){
         ArrayList<Asiento> copia=new ArrayList<Asiento>();
         copia.addAll(this.asientos);

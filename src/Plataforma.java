@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Plataforma {
@@ -9,11 +10,10 @@ public class Plataforma {
     public Plataforma(ArrayList<EmpresaTransporte> listaEmpresas) {
         this.listaEmpresas= listaEmpresas;
     }
-    public ArrayList<Viaje> buscarViaje(String origen, String destino, LocalDate fecha){
+    public ArrayList<Viaje> buscarViaje(String origen, String destino, LocalDateTime fecha){
         ArrayList<Viaje> v= new ArrayList<Viaje>();
         for (EmpresaTransporte e : listaEmpresas) {
-
-            v.addAll(e.obtenerViaje(origen,destino,fecha));
+            v.addAll(e.obtenerViajes(origen,destino,fecha));
         }
     return v;
     };
