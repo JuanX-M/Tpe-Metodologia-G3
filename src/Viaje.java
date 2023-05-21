@@ -1,14 +1,15 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Viaje {
     private String origen;
     private String destino;
-    private LocalDate fecha;
+    private LocalDateTime fecha;
     private String hora;
     private double precio;
     private Omnibus omnibus;
 
-    public Viaje(String origen, String destino, LocalDate fecha, String hora) {
+    public Viaje(String origen, String destino, LocalDateTime fecha, String hora) {
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
@@ -23,7 +24,7 @@ public class Viaje {
         return destino;
     }
 
-    public LocalDate getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
@@ -47,7 +48,7 @@ public class Viaje {
         this.destino = destino;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
 

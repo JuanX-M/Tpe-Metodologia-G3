@@ -41,30 +41,30 @@ public class UsuarioApp {
         return this.userRegistro.buscarUsuarioPorCondicion(c);
     }
 
-    public void asociarTarjeta(Usuario u){
+    public void asociarTarjeta(Usuario u) {
         Scanner scan = new Scanner(System.in);
         System.out.println("ingrese el numero de la tarjeta");
-        long numero=scan.nextInt();
+        long numero = scan.nextInt();
         System.out.println("ingrese el nombre del titular de la tarjeta");
-        String titular=scan.next();
+        String titular = scan.next();
         System.out.println("ingrese la fecha de vencimiento de la tarjeta");
-        LocalDate fecha= LocalDate.parse(scan.next());
-        Period periodo=Period.between(fecha, LocalDate.now());
-        if(periodo.getDays()>0){
+        LocalDate fecha = LocalDate.parse(scan.next());
+        Period periodo = Period.between(fecha, LocalDate.now());
+        if (periodo.getDays() > 0) {
             System.out.println("ingrese el codigo de seguridad ");
-            int codigo=scan.nextInt();
-        }else{
+            int codigo = scan.nextInt();
+        } else {
             System.out.println("la tarjet aingresada esta vencida");
         }
+    }
 
 
-        public ArrayList<Viaje>  buscarViaje(){
-                p.
+        public ArrayList<Viaje> buscarViaje(String  origen, String destino, LocalDate fecha){
+               return p.buscarViaje(origen, destino, fecha);//ascasdas
         }
         //recibe arraylist de viajes
         public void filtrar(){
 
         }
 
-    }
 }
