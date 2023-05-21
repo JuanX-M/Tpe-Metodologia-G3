@@ -47,21 +47,15 @@ public class Administrador {
         this.email = email;
     }
 
+    
+    
+    // TODO: Cambiar esta función
     public boolean verificarDatos(Viaje viaje){
-        if(viaje.getDestino()!=null){
-            if(viaje.getFecha()!=null){
-                if(viaje.getHora()!=null){
-                    if(viaje.getOrigen()!=null){
-                        if(viaje.getOmnibus()!=null){
-                            if(viaje.getPrecio()!=0.0){
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+    	return (viaje.getDestino() == null && 
+    		    viaje.getFecha() == null &&
+    		    viaje.getOrigen() == null &&
+    		    viaje.getOmnibus() == null &&
+    		    viaje.getPrecio() == 0.0);
     }
 
     public void darAlta(Viaje viaje, Omnibus omnibus){

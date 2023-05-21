@@ -18,18 +18,23 @@ public class Omnibus {
     }
 
     public ArrayList<Viaje> getItinerario(){
-        ArrayList<Viaje> copia=new ArrayList<Viaje>();
+        ArrayList<Viaje> copia = new ArrayList<Viaje>();
         copia.addAll(this.itinerario);
         return copia;
     }
     public ArrayList<Viaje> getViajes(String origen, String destino, LocalDate fecha){
         ArrayList<Viaje> viajes = new ArrayList<Viaje>();
         for (Viaje viaje : this.getItinerario()) {
-            if (viaje.getOrigen().equals(origen) && viaje.getDestino().equals(destino) && viaje.getFecha().equals(fecha)) {
+        	//System.out.println(viaje);
+        	//System.out.println(origen + " " + destino + " " + fecha);
+            if (viaje.getOrigen().equals(origen) 
+            		&& viaje.getDestino().equals(destino) 
+            		&& viaje.getFecha().toLocalDate().equals(fecha)) {
                 viajes.add(viaje);
             }
         }
-        return viajes;    }
+        return viajes;    
+    }
     public ArrayList<Asiento> getAsientos(){
         ArrayList<Asiento> copia=new ArrayList<Asiento>();
         copia.addAll(this.asientos);

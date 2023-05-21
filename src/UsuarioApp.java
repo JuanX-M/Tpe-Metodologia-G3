@@ -11,7 +11,8 @@ public class UsuarioApp {
     //private Plataforma plataforma;
     private boolean logged;
     Plataforma p;
-    public UsuarioApp(){
+    public UsuarioApp(Plataforma p){
+    	this.p = p;
         this.userRegistro=new RegistroUsuario();
         //this.plataforma= new Plataforma();
         this.logged=false;
@@ -59,12 +60,15 @@ public class UsuarioApp {
     }
 
 
-        public ArrayList<Viaje> buscarViaje(String  origen, String destino, LocalDate fecha){
-               return p.buscarViaje(origen, destino, fecha);//ascasdas
-        }
-        //recibe arraylist de viajes
-        public void filtrar(){
+    public ArrayList<Viaje> buscarViaje(String  origen, String destino, LocalDate fecha){
+           return p.buscarViaje(origen, destino, fecha);
+    }
+    
+    
+    
+    //recibe arraylist de viajes
+    public void filtrar(){
 
-        }
+    }
 
 }

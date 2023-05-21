@@ -10,15 +10,21 @@ public class Usuario {
     private double creditos;
     //private ArrayList<Compra> compras;
 
-    public Usuario(){
-
-    }
 
     public String getNombre() {
         return nombre;
     }
 
-    public String getApellido() {
+    public Usuario(String nombre, String apellido, int dNI, String mail, String clave) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		DNI = dNI;
+		this.mail = mail;
+		this.clave = clave;
+	}
+
+	public String getApellido() {
         return apellido;
     }
 

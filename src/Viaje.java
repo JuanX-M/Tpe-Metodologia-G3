@@ -5,41 +5,38 @@ public class Viaje {
     private String origen;
     private String destino;
     private LocalDateTime fecha;
-    private String hora;
     private double precio;
     private Omnibus omnibus;
 
-    public Viaje(String origen, String destino, LocalDateTime fecha, String hora) {
+    public Viaje(String origen, String destino, LocalDateTime fecha, double precio, Omnibus om) {
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
-        this.hora = hora;
+        this.precio = precio;
+        this.omnibus = om;
     }
+    
+    
 
-    public String getOrigen() {
-        return origen;
-    }
+    
+    
+    
 
-    public String getDestino() {
-        return destino;
-    }
+    @Override
+	public String toString() {
+		return "Viaje [origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", precio=" + precio + "]";
+	}
 
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
 
-    public String getHora() {
-        return hora;
-    }
 
-    public double getPrecio() {
-        return precio;
-    }
 
-    public Omnibus getOmnibus() {
-        return omnibus;
-    }
-
+	public String getOrigen() { return origen; }
+    public String getDestino() { return destino; }
+    public LocalDateTime getFecha() { return fecha; }
+    public double getPrecio() { return precio; }
+    public Omnibus getOmnibus() { return omnibus; }
+    
+    
     public void setOrigen(String origen) {
         this.origen = origen;
     }
@@ -51,11 +48,7 @@ public class Viaje {
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
-
+    
     public void setPrecio(double precio) {
         this.precio = precio;
     }
