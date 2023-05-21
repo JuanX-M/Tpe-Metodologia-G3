@@ -8,6 +8,13 @@ public class Viaje {
     private double precio;
     private Omnibus omnibus;
 
+    public Viaje(String origen, String destino, LocalDate fecha, String hora) {
+        this.origen = origen;
+        this.destino = destino;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+
     public String getOrigen() {
         return origen;
     }

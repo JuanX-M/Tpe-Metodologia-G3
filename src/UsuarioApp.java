@@ -1,5 +1,6 @@
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
@@ -9,7 +10,7 @@ public class UsuarioApp {
     private RegistroUsuario userRegistro;
     //private Plataforma plataforma;
     private boolean logged;
-
+    Plataforma p;
     public UsuarioApp(){
         this.userRegistro=new RegistroUsuario();
         //this.plataforma= new Plataforma();
@@ -57,6 +58,13 @@ public class UsuarioApp {
         }
 
 
-        //?
+        public ArrayList<Viaje>  buscarViaje(){
+                p.
+        }
+        //recibe arraylist de viajes
+        public void filtrar(){
+
+        }
+
     }
 }
