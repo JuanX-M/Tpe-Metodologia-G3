@@ -18,7 +18,22 @@ public class UsuarioApp {
         this.logged=false;
     }
 
-
+    public void iniciarSesion(){
+        System.out.println("ingrese el Dni");
+        Scanner scan = new Scanner(System.in);
+        int dni= scan.nextInt();
+        if(this.verificarExisteDNI(dni)) {
+            System.out.println("ingrese la clave");
+            String clave= scan.next();
+            while(!this.verificarClave(clave)){
+                System.out.println("la clave es incorrecta, ingresela de nuevo: ");
+                clave= scan.next();
+            }
+            System.out.println("se inició sesión correctamente");
+        }else{
+            System.out.println("El Dni no se encuentra en el sistema, tiene que registrarse");
+        }
+    }
 
     public void registrarUsuario(Usuario u){
         userRegistro.agregarUsuario(u);
@@ -44,18 +59,18 @@ public class UsuarioApp {
 
     public void asociarTarjeta(Usuario u) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Ingrese el numero de la tarjeta: ");
+        System.out.println("ingrese el numero de la tarjeta");
         long numero = scan.nextInt();
-        System.out.println("Ingrese el nombre del titular de la tarjeta: ");
+        System.out.println("ingrese el nombre del titular de la tarjeta");
         String titular = scan.next();
-        System.out.println("Ingrese la fecha de vencimiento de la tarjeta: ");
+        System.out.println("ingrese la fecha de vencimiento de la tarjeta");
         LocalDate fecha = LocalDate.parse(scan.next());
-        Period periodo = Period.between(fecha, LocalDate.now());
-        if (periodo.getDays() > 0) {
-            System.out.println("Ingrese el codigo de seguridad: ");
+        if (!fecha.isBefore(LocalDate.now())) {
+            System.out.println("ingrese el codigo de seguridad ");
             int codigo = scan.nextInt();
+            System.out.println("la tarjeta fue asociada correctamente");
         } else {
-            System.out.println("La tarjeta ingresada esta vencida");
+            System.out.println("la tarjeta a ingresada esta vencida");
         }
     }
 

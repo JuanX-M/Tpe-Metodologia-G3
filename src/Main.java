@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static void solicitarDatosYRegistrar(UsuarioApp app) {
+    public static void solicitarDatosYRegistrar(UsuarioApp app) { //se piden los datos y se le manda a la app que registre al usuario
         Scanner scan = new Scanner(System.in);
         System.out.println("Ingrese su nombre: ");
         String nombre = scan.nextLine();
