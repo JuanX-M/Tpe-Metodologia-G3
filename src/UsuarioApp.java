@@ -18,7 +18,22 @@ public class UsuarioApp {
         this.logged=false;
     }
 
-
+    public void iniciarSecion(){
+        System.out.println("ingrese el Dni");
+        Scanner scan = new Scanner(System.in);
+        int dni= scan.nextInt();
+        if(this.verificarExisteDNI(dni)) {
+            System.out.println("ingrese la clave");
+            String clave= scan.next();
+            while(!this.verificarClave(clave)){
+                System.out.println("la clave es incorrecta, ingresela de nuevo: ");
+                clave= scan.next();
+            }
+            System.out.println("se inició sesión correctamente");
+        }else{
+            System.out.println("El Dni no se encuentra en el sistema, tiene que registrarse");
+        }
+    }
 
     public void registrarUsuario(Usuario u){
         userRegistro.agregarUsuario(u);
@@ -50,12 +65,12 @@ public class UsuarioApp {
         String titular = scan.next();
         System.out.println("ingrese la fecha de vencimiento de la tarjeta");
         LocalDate fecha = LocalDate.parse(scan.next());
-        Period periodo = Period.between(fecha, LocalDate.now());
-        if (periodo.getDays() > 0) {
+        if (!fecha.isBefore(LocalDate.now())) {
             System.out.println("ingrese el codigo de seguridad ");
             int codigo = scan.nextInt();
+            System.out.println("la tarjeta fue asociada correctamente");
         } else {
-            System.out.println("la tarjet aingresada esta vencida");
+            System.out.println("la tarjeta a ingresada esta vencida");
         }
     }
 
