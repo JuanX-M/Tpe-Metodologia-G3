@@ -47,9 +47,6 @@ public class Administrador {
         this.email = email;
     }
 
-    
-    
-    // TODO: Cambiar esta función
     public boolean verificarDatos(Viaje viaje){
     	return (viaje.getDestino() == null && 
     		    viaje.getFecha() == null &&
