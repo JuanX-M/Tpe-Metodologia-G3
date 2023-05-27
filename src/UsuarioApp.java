@@ -18,7 +18,7 @@ public class UsuarioApp {
         this.logged=false;
     }
 
-    public void iniciarSecion(){
+    public void iniciarSesion(){
         System.out.println("ingrese el Dni");
         Scanner scan = new Scanner(System.in);
         int dni= scan.nextInt();
