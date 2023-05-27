@@ -66,9 +66,14 @@ public class UsuarioApp {
     
     
     
-    //recibe arraylist de viajes
-    public void filtrar(){
-
+    public ArrayList<Viaje> filtrar(ArrayList<Viaje> viajes, Filtro f){
+        ArrayList<Viaje> res = new ArrayList<Viaje>();
+        for (int i = 0; i < viajes.size(); i++){
+            Viaje v = viajes.get(i);
+            if (f.cumple(v))
+                res.add(v);
+        }
+        return res;
     }
 
 }
