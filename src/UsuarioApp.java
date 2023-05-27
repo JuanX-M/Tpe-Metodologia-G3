@@ -44,18 +44,18 @@ public class UsuarioApp {
 
     public void asociarTarjeta(Usuario u) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("ingrese el numero de la tarjeta");
+        System.out.println("Ingrese el numero de la tarjeta: ");
         long numero = scan.nextInt();
-        System.out.println("ingrese el nombre del titular de la tarjeta");
+        System.out.println("Ingrese el nombre del titular de la tarjeta: ");
         String titular = scan.next();
-        System.out.println("ingrese la fecha de vencimiento de la tarjeta");
+        System.out.println("Ingrese la fecha de vencimiento de la tarjeta: ");
         LocalDate fecha = LocalDate.parse(scan.next());
         Period periodo = Period.between(fecha, LocalDate.now());
         if (periodo.getDays() > 0) {
-            System.out.println("ingrese el codigo de seguridad ");
+            System.out.println("Ingrese el codigo de seguridad: ");
             int codigo = scan.nextInt();
         } else {
-            System.out.println("la tarjet aingresada esta vencida");
+            System.out.println("La tarjeta ingresada esta vencida");
         }
     }
 
