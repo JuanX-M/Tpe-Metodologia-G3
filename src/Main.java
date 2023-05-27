@@ -7,25 +7,25 @@ public class Main {
 
     public static void solicitarDatosYRegistrar(UsuarioApp app) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("ingrese su nombre");
+        System.out.println("Ingrese su nombre: ");
         String nombre = scan.nextLine();
-        System.out.println("ingrese su apellido");
+        System.out.println("Ingrese su apellido: ");
         String apellido = scan.nextLine();
-        System.out.println("ingrese su DNI");
+        System.out.println("Ingrese su DNI: ");
         int dni = scan.nextInt();
         if (!app.verificarExisteDNI(dni)) {
-            System.out.println("ingrese su mail");
+            System.out.println("Ingrese su mail: ");
             String mail = scan.next();
-            System.out.println("igrese la contraseña: al menos: 8 caracteres, una minuscula, una mayuscula y un numero ");
+            System.out.println("Ingrese la contraseña, debe contener al menos: 8 caracteres, una minuscula, una mayuscula y un numero:  ");
             String clave = scan.next();
             while (!app.verificarClave(clave)) {
-                System.out.println("clave mal ingresada, ingrese otra");
+                System.out.println("Clave mal ingresada, ingrese otra: ");
                 clave = scan.next();
             }
             Usuario u = new Usuario(nombre, apellido, dni, mail, clave);
             app.registrarUsuario(u);
         } else {
-            System.out.println("el DNI ingresado ya existe en el sistema");
+            System.out.println("El DNI ingresado ya existe en el sistema: ");
         }
     }
     
