@@ -16,18 +16,11 @@ public class Viaje {
         this.omnibus = om;
     }
     
-    
-
-    
-    
-    
 
     @Override
 	public String toString() {
 		return "Viaje [origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", precio=" + precio + "]";
 	}
-
-
 
 
 	public String getOrigen() { return origen; }
