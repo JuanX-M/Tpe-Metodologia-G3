@@ -1,5 +1,6 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+
+
+
 public class Administrador {
     private String nombre;
     private String apellido;

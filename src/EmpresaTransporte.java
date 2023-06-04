@@ -7,13 +7,18 @@ public class EmpresaTransporte {
     //private RegistroCompras reservas;
     private String nombre;
 
-    public EmpresaTransporte(String nombre, ArrayList<Omnibus> omnibusEmpresa) {
-        this.nombre = nombre;
-        this.omnibus = omnibusEmpresa; 
-        // TODO: verificar que todos los omnibus sean de la empresa correspondiente 
+    public EmpresaTransporte(String nombre) {
+        this.nombre = nombre; 
         //this.reservas = new RegistroCompras();
     }
 
+    public void addNewOmnibus()
+    {
+    	Omnibus nuevoOmnibus = new Omnibus(this, omnibus.size());
+    	omnibus.add(nuevoOmnibus);
+    }
+    
+    
     public ArrayList<Viaje> obtenerViajes(String origen, String destino, LocalDate fecha) {
         ArrayList<Viaje> viajesDisponibles = new ArrayList<Viaje>();
         for (Omnibus bus : omnibus) {
@@ -28,10 +33,6 @@ public class EmpresaTransporte {
     // Getters and setters
     public ArrayList<Omnibus> getOmnibus() {
         return omnibus;
-    }
-
-    public void setOmnibus(ArrayList<Omnibus> omnibus) {
-        this.omnibus = omnibus;
     }
 
     public String getNombre() {

@@ -9,26 +9,30 @@ public class RegistroUsuario {
         this.usuarios= new ArrayList<Usuario>();
     }
 
-    public void agregarUsuario(Usuario u){//por ahora sin criterio de ordenamiento
+    public void agregarUsuario(Usuario u) throws Exception{//por ahora sin criterio de ordenamiento
+        if (this.existeDNI(u.getDNI()))
+        	throw new Exception("El DNI ingresado ya fue registrado");
         this.usuarios.add(u);
     }
-    public void darBajaUsuario(Usuario u){
+    public void darBajaUsuario(Usuario u) throws Exception{
+        if (this.existeDNI(u.getDNI()))
+        	throw new Exception("El DNI no esta registrado");
         this.usuarios.remove(u);
     }
     public boolean existeDNI(int dni){
         for(Usuario u:usuarios){
-            if(u.getDNI()==dni){
+            if(u.getDNI()==dni)
                 return true;
-            }
         }
         return false;
     }
-    public Usuario buscarUsuarioPorCondicion(Condicion c){
-        for(Usuario u:usuarios){
+    public ArrayList<Usuario> buscarUsuarioPorCondicion(Condicion c){
+        ArrayList<Usuario> usuariosAptos = new ArrayList<Usuario>();
+    	for(Usuario u:usuarios){
             if(c.cumple(u)){
-                return u;
+                usuariosAptos.add(u);
             }
         }
-        return null;
+        return usuariosAptos;
     }
 }

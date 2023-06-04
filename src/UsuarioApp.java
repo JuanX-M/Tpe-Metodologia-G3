@@ -18,60 +18,41 @@ public class UsuarioApp {
         this.logged=false;
     }
 
-    public void iniciarSesion(){
-        System.out.println("ingrese el Dni");
-        Scanner scan = new Scanner(System.in);
-        int dni= scan.nextInt();
-        if(this.verificarExisteDNI(dni)) {
-            System.out.println("ingrese la clave");
-            String clave= scan.next();
-            while(!this.verificarClave(clave)){
-                System.out.println("la clave es incorrecta, ingresela de nuevo: ");
-                clave= scan.next();
-            }
-            System.out.println("se inició sesión correctamente");
-        }else{
-            System.out.println("El Dni no se encuentra en el sistema, tiene que registrarse");
-        }
+    public boolean iniciarSesion(int dni, String clave){
+       	if (!logged)
+       	{
+        	if (!this.userRegistro.existeDNI(dni))
+        		return false;
+        	
+        	Condicion condicion = new CondicionMismoDni(dni);
+        	Usuario usuarioRegistrado = userRegistro.buscarUsuarioPorCondicion(condicion).get(0); 
+        	// hacemos el get(0) ya que deberia de ser un único usuario el que cumple la condicion
+        	this.logged = true;
+        	return usuarioRegistrado.coincide(clave);	
+       	}
+       	return true;
     }
 
-    public void registrarUsuario(Usuario u){
+    
+    public boolean estaLogeado()
+    {
+    	return this.logged;
+    }
+    
+    public void registrarUsuario(Usuario u) throws Exception{
         userRegistro.agregarUsuario(u);
     }
 
-    public boolean verificarClave(String clave) { //retorna un true si la clave cumple con las condiciones
-        if (clave.length() < 8) {
-            return false;
-        }
-        String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(clave);
-
-        return matcher.matches();
-    }
     public boolean verificarExisteDNI(int dni){
         return this.userRegistro.existeDNI(dni);
     }
 
-    public Usuario buscarUsuario(Condicion c){
+    public ArrayList<Usuario> buscarUsuario(Condicion c){
         return this.userRegistro.buscarUsuarioPorCondicion(c);
     }
 
-    public void asociarTarjeta(Usuario u) {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("ingrese el numero de la tarjeta");
-        long numero = scan.nextInt();
-        System.out.println("ingrese el nombre del titular de la tarjeta");
-        String titular = scan.next();
-        System.out.println("ingrese la fecha de vencimiento de la tarjeta");
-        LocalDate fecha = LocalDate.parse(scan.next());
-        if (!fecha.isBefore(LocalDate.now())) {
-            System.out.println("ingrese el codigo de seguridad ");
-            int codigo = scan.nextInt();
-            System.out.println("la tarjeta fue asociada correctamente");
-        } else {
-            System.out.println("la tarjeta a ingresada esta vencida");
-        }
+    public void asociarTarjeta(Usuario u, TarjetaDeCredito tarjeta) {
+    	u.asociarTarjeta(tarjeta);
     }
 
 

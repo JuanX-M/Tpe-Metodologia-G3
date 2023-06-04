@@ -3,14 +3,26 @@ import java.time.LocalDate;
 public class TarjetaDeCredito {
     private String titular;
     private long numero;
-    private LocalDate fechaEmision;
     private LocalDate fechaVencimiento;
     private int cvv;
     private double saldo;
     private String banco;
     private String marca;
 
-    public String getTitular() {
+    
+    public TarjetaDeCredito(String titular, long numero, LocalDate fechaVencimiento, int cvv,
+			 String banco, String marca) {
+		super();
+		this.titular = titular;
+		this.numero = numero;
+		this.fechaVencimiento = fechaVencimiento;
+		this.cvv = cvv;
+		this.saldo = saldo;
+		this.banco = banco;
+		this.marca = marca;
+	}
+
+	public String getTitular() {
         return titular;
     }
 
@@ -18,9 +30,6 @@ public class TarjetaDeCredito {
         return numero;
     }
 
-    public LocalDate getFechaEmision() {
-        return fechaEmision;
-    }
 
     public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
@@ -48,10 +57,6 @@ public class TarjetaDeCredito {
 
     public void setNumero(long numero) {
         this.numero = numero;
-    }
-
-    public void setFechaEmision(LocalDate fechaEmision) {
-        this.fechaEmision = fechaEmision;
     }
 
     public void setFechaVencimiento(LocalDate fechaVencimiento) {

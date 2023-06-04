@@ -7,27 +7,76 @@ public class Main {
 
     public static void solicitarDatosYRegistrar(UsuarioApp app) { //se piden los datos y se le manda a la app que registre al usuario
         Scanner scan = new Scanner(System.in);
+        System.out.println("Ingrese su DNI: ");
+        int dni = scan.nextInt();
         System.out.println("Ingrese su nombre: ");
         String nombre = scan.nextLine();
         System.out.println("Ingrese su apellido: ");
         String apellido = scan.nextLine();
-        System.out.println("Ingrese su DNI: ");
-        int dni = scan.nextInt();
-        if (!app.verificarExisteDNI(dni)) {
-            System.out.println("Ingrese su mail: ");
-            String mail = scan.next();
-            System.out.println("Ingrese la contraseña, debe contener al menos: 8 caracteres, una minuscula, una mayuscula y un numero:  ");
-            String clave = scan.next();
-            while (!app.verificarClave(clave)) {
-                System.out.println("Clave mal ingresada, ingrese otra: ");
-                clave = scan.next();
-            }
+        System.out.println("Ingrese su mail: ");
+        String mail = scan.next();
+        System.out.println("Ingrese la contraseña, debe contener al menos: 8 caracteres, una minuscula, una mayuscula y un numero:  ");
+        String clave = scan.next();
+        
+        
+        try {
             Usuario u = new Usuario(nombre, apellido, dni, mail, clave);
             app.registrarUsuario(u);
-        } else {
-            System.out.println("El DNI ingresado ya existe en el sistema: ");
-        }
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
     }
+    
+    public void iniciarSesion(UsuarioApp app)
+    {
+    	while (!app.estaLogeado())
+    	{
+        	System.out.println("ingrese el Dni");
+            Scanner scan = new Scanner(System.in);
+            int dni= scan.nextInt();
+            
+            System.out.println("ingrese la clave");
+            String clave = scan.next();
+            
+            app.iniciarSesion(dni, clave);
+            if (!app.estaLogeado())
+            	System.out.println("Alguno de los datos ingresados no es correcto");
+    	}
+    	System.out.println("Se ha iniciado sesión correctamente");
+    }
+    
+    public void asociarTarjeta(UsuarioApp app, Usuario u)
+    {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("ingrese el numero de la tarjeta");
+        long numero = scan.nextInt();
+        System.out.println("ingrese el nombre del titular de la tarjeta");
+        String titular = scan.next();
+        System.out.println("ingrese el banco de la tarjeta");
+        String banco = scan.next();
+        System.out.println("ingrese la marca de la tarjeta");
+        String marca = scan.next();
+        
+        
+        
+        
+        System.out.println("ingrese la fecha de vencimiento de la tarjeta");
+        LocalDate fecha = LocalDate.parse(scan.next());
+        if (!fecha.isBefore(LocalDate.now())) {
+            System.out.println("ingrese el codigo de seguridad ");
+            int codigo = scan.nextInt();
+            
+            TarjetaDeCredito tarjeta = new TarjetaDeCredito(titular, numero, fecha, codigo, banco, marca);
+            app.asociarTarjeta(u, tarjeta);
+            
+            System.out.println("la tarjeta fue asociada correctamente");
+        } else {
+            System.out.println("la tarjeta a ingresada esta vencida");
+        }
+        
+    }
+    
     
     
     // TEST CASE de la funcionalidad de buscarViaje
@@ -115,8 +164,8 @@ public class Main {
 		
 		// TODO: REGEX EN LA CLASE DE USUARIO NO EN LA ENTRADA DE DATOS!!
 		
-        Usuario u = new Usuario("Juan", "Cruz", 44693208, "hola@gmail.com", "Pasaporte55");
-        app.registrarUsuario(u);
+        //Usuario u = new Usuario("Juan", "Cruz", 44693208, "hola@gmail.com", "Pasaporte55");
+        //app.registrarUsuario(u);
 		//solicitarDatosYRegistrar(app);
 		buscarViaje(app);
 	}

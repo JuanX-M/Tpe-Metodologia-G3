@@ -29,7 +29,8 @@ public class Viaje {
     
     @Override
 	public String toString() {
-		return "";
+    	// TODO: agregar recorridos intermedios?
+		return "Empresa: " + omnibus.getNombreEmpresa() + " | hora de llegada: " + horaLlegada + " | hora de salida: " + horaSalida;
 	}
 
 

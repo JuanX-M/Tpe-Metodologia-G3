@@ -2,18 +2,21 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 public class Omnibus {
-    private String nombreEmpresa;
+    private EmpresaTransporte empresaDuenia;
+    private int numOmnibus;
     private ArrayList<Viaje> itinerario; //los viajes que tiene que hacer el omnibus
     private ArrayList<Asiento> asientos;
     private int limiteAsientos=50; //mirar
 
-    public Omnibus(String nombre){
-        this.nombreEmpresa=nombre;
+    public Omnibus(EmpresaTransporte em, int num){
+        numOmnibus = num;
+        empresaDuenia = em;
         itinerario= new ArrayList<Viaje>();
         asientos= new ArrayList<Asiento>();
     }
 
 
+    
     public ArrayList<Viaje> getItinerario(){
         ArrayList<Viaje> copia = new ArrayList<Viaje>();
         copia.addAll(this.itinerario);
@@ -22,8 +25,6 @@ public class Omnibus {
     public ArrayList<Viaje> getViajes(String origen, String destino, LocalDate fecha){
         ArrayList<Viaje> viajes = new ArrayList<Viaje>();
         for (Viaje viaje : this.getItinerario()) {
-        	//System.out.println(viaje);
-        	//System.out.println(origen + " " + destino + " " + fecha);
             if (viaje.getOrigen().equals(origen) 
             		&& viaje.getDestino().equals(destino) 
             		&& viaje.getFecha().toLocalDate().equals(fecha)) {
@@ -46,11 +47,6 @@ public class Omnibus {
     }
     
     public String getNombreEmpresa() {
-        return nombreEmpresa;
+        return empresaDuenia.getNombre();
     }
-
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
-    }
-
 }
