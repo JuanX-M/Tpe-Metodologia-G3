@@ -1,7 +1,14 @@
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+
+
+// TODO: refactorizar lógica del menú en una clase
+
 
 public class Main {
 
@@ -106,7 +113,6 @@ public class Main {
         System.out.println("ingrese la ciudad de destino: ");
         String destino = scan.nextLine();
         System.out.println("ingrese la fecha: ");
-        
         System.out.println("ingrese el mes: ");
         int mes = Integer.parseInt(scan.nextLine());
         System.out.println("ingrese el dia: ");
@@ -118,13 +124,127 @@ public class Main {
         LocalDate fecha = LocalDate.of(LocalDate.now().getYear(), mes, dia); // "Tandil", "MDQ", LocalDate.of(2023, 6, 1)
         ArrayList<Viaje> viajesBuscados = app.buscarViaje(origen, destino, fecha);
         
-        if (viajesBuscados.isEmpty())
+        Main.mostrarViajes(viajesBuscados);
+        
+        boolean seleccionando = true;
+        while (seleccionando) {
+            System.out.println("1. Seleccionar viaje");
+            System.out.println("2. filtrar viajes");
+            System.out.println("3. Salir");
+
+            System.out.print("Ingrese la opción deseada: ");
+            int opcion = scan.nextInt();
+
+            switch (opcion) {
+                case 1:
+                	System.out.println("Ingrese el número de viaje que desea elegir: ");
+                	int numViaje = scan.nextInt();
+                    // TODO: se tendria pasar al pago
+                    break;
+                case 2:
+                	Main.filtrar(viajesBuscados, app);
+                    break;
+                case 3:
+                	seleccionando = false;
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor, ingrese una opción válida.");
+                    break;
+            }
+        }
+        // Ahora deberiamos preguntar si se quiere filtrar o seleccionar un viaje
+    }
+    
+        
+        
+        
+    public static void filtrar(ArrayList<Viaje> viajes, UsuarioApp app)
+    {
+        boolean filtrando = true;
+        Scanner scan = new Scanner(System.in);
+        while (filtrando) {
+
+            System.out.println("1. por costo");
+            System.out.println("2. por horario");
+            System.out.println("3. por empresa");
+            System.out.println("4. dejar de filtrar");
+
+            System.out.print("Ingrese la opción deseada: ");
+            int opcion = scan.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    FiltroCosto filtro = Main.preguntarFiltroCosto();
+                    ArrayList<Viaje> filtrados = app.filtrar(viajes, filtro);
+                    Main.mostrarViajes(filtrados);
+                    break;
+                case 2:
+                    FiltroMargenHorario filtro2 = Main.preguntarFiltroHorario();
+                    ArrayList<Viaje> filtrados2 = app.filtrar(viajes, filtro2);
+                    Main.mostrarViajes(filtrados2);
+                    break;
+                case 3:
+                    FiltroEmpresa filtro3 = Main.preguntarFiltroEmpresa();
+                    ArrayList<Viaje> filtrados3 = app.filtrar(viajes, filtro3);
+                    Main.mostrarViajes(filtrados3);
+                    break;
+                case 4:
+                	filtrando = false;
+                    break;
+                default:
+                    System.out.println("Opción inválida. Por favor, ingrese una opción válida.");
+                    break;
+            }	
+        }
+    }
+    
+    public static FiltroCosto preguntarFiltroCosto()
+    {
+    	Scanner scan = new Scanner(System.in);
+        System.out.println("ingrese el mínimo costo: ");
+        double piso = scan.nextDouble();
+        System.out.println("ingrese el máximo costo: ");
+        double max = scan.nextDouble();
+        return new FiltroCosto(piso, max);
+    }
+
+    public static FiltroMargenHorario preguntarFiltroHorario()
+    {
+    	Scanner scan = new Scanner(System.in);
+    	DateTimeFormatter formato = DateTimeFormatter.ofPattern("HH:mm");
+    	
+        System.out.println("ingrese un horario de salida en el formato HH:mm: ");
+        LocalTime salida = LocalTime.parse(scan.nextLine(), formato);
+        
+        System.out.println("ingrese un horario de llegada en el formato HH:mm: ");
+        LocalTime llegada = LocalTime.parse(scan.nextLine(), formato);
+        
+        return new FiltroMargenHorario(salida, llegada);
+    }
+    
+    
+    
+    public static FiltroEmpresa preguntarFiltroEmpresa()
+    {
+    	Scanner scan = new Scanner(System.in);
+        System.out.println("ingrese el nombre de la empresa: ");
+        String nombre = scan.next();
+        return new FiltroEmpresa(nombre);
+    }
+    
+    
+    
+    
+    public static void mostrarViajes(ArrayList<Viaje> viajes)
+    {
+        if (viajes.isEmpty())
         	System.out.println("No se encontraron viajes para la entrada dada. ");
         
-        for (Viaje v : viajesBuscados)
+        for (int i = 0; i < viajes.size(); i++)
         {
         	System.out.println("Viajes disponibles para la entrada dada: ");
-        	System.out.println(v);
+        	System.out.print(i + " ");
+        	System.out.println(viajes.get(i));
         }   
     }
     
@@ -217,6 +337,10 @@ public class Main {
     	
 		
 		
+    	
+    	
+    	
+    	
 		// Iniciamos la sesión del usuario que va a utilizar la aplicación
 		UsuarioApp app = new UsuarioApp(p);
 

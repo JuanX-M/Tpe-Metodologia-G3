@@ -1,14 +1,14 @@
 public class FiltroEmpresa extends Filtro {
 
-    private EmpresaTransporte empresa;
+    private String nombre;
 
-    public FiltroEmpresa(EmpresaTransporte empresa){
-        this.empresa = empresa;
+    public FiltroEmpresa(String nombre){
+        this.nombre = nombre;
     }
 
     public boolean cumple(Viaje v){
         // Verifica si empresa asociada al viaje y empresa de filtrado tienen el mismo nombre
-        return empresa.getNombre().equals(v.getOmnibus().getNombreEmpresa());
+        return nombre.equals(v.getOmnibus().getNombreEmpresa());
     }
 
 }
