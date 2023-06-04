@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EmpresaTransporte {
-    private ArrayList<Omnibus> omnibus;
+    private ArrayList<Omnibus> omnibus = new ArrayList<Omnibus>();
     //private RegistroCompras reservas;
     private String nombre;
 
@@ -14,7 +14,7 @@ public class EmpresaTransporte {
 
     public void addNewOmnibus()
     {
-    	Omnibus nuevoOmnibus = new Omnibus(this, omnibus.size());
+    	Omnibus nuevoOmnibus = new Omnibus(this, omnibus.size() + 1);
     	omnibus.add(nuevoOmnibus);
     }
     
@@ -31,8 +31,19 @@ public class EmpresaTransporte {
     }
 
     // Getters and setters
+    public Omnibus buscarOmnibus(int numOmnibus) {
+    	for (Omnibus o : this.omnibus)
+    		if (o.getNum() == numOmnibus)
+    			return o;
+    	
+    	return null;
+    }
+    
+    
     public ArrayList<Omnibus> getOmnibus() {
-        return omnibus;
+    	ArrayList<Omnibus> copia = new ArrayList<Omnibus>();
+    	copia.addAll(this.omnibus);
+        return copia;
     }
 
     public String getNombre() {

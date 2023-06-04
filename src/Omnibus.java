@@ -15,7 +15,11 @@ public class Omnibus {
         asientos= new ArrayList<Asiento>();
     }
 
-
+    
+    public int getNum()
+    {
+    	return numOmnibus;
+    }
     
     public ArrayList<Viaje> getItinerario(){
         ArrayList<Viaje> copia = new ArrayList<Viaje>();

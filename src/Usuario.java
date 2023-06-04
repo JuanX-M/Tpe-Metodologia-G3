@@ -13,10 +13,6 @@ public class Usuario {
     //private ArrayList<Compra> compras;
 
 
-    public String getNombre() {
-        return nombre;
-    }
-
     public Usuario(String nombre, String apellido, int dNI, String mail, String clave) throws Exception {
 		super();
 		this.nombre = nombre;
@@ -24,13 +20,23 @@ public class Usuario {
 		DNI = dNI;
 		this.mail = mail;
 		
-		this.verificarFormatoClave();
+		this.verificarFormatoClave(clave);
 		this.clave = clave;
     }
-
     
-    public void verificarFormatoClave() throws Exception
+    
+    
+    public String toString()
     {
+    	return "Usuario " + nombre;
+    }
+    
+    
+    public void verificarFormatoClave(String clave) throws Exception
+    {
+    	if (clave.length() < 8)
+    		throw new Exception("La clave es muy corta");
+    	
         String regex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(clave);
@@ -60,7 +66,12 @@ public class Usuario {
     {
     	metodoPago = t;
     }
+
     
+
+    public String getNombre() {
+        return nombre;
+    }
     
 	public String getApellido() {
         return apellido;

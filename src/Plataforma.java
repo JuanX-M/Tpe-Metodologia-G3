@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 public class Plataforma {
     private ArrayList<EmpresaTransporte> listaEmpresas;
-    //private planGPS
 
-    //TODO: agregar
+    
+    
+    
     public Plataforma(ArrayList<EmpresaTransporte> listaEmpresas) {
         this.listaEmpresas = listaEmpresas;
     }

@@ -5,14 +5,16 @@ import java.util.Scanner;
 
 public class Main {
 
+	
     public static void solicitarDatosYRegistrar(UsuarioApp app) { //se piden los datos y se le manda a la app que registre al usuario
-        Scanner scan = new Scanner(System.in);
+    	System.out.println("===== REGISTRARSE =====");
+    	Scanner scan = new Scanner(System.in);
         System.out.println("Ingrese su DNI: ");
         int dni = scan.nextInt();
         System.out.println("Ingrese su nombre: ");
-        String nombre = scan.nextLine();
+        String nombre = scan.next();
         System.out.println("Ingrese su apellido: ");
-        String apellido = scan.nextLine();
+        String apellido = scan.next();
         System.out.println("Ingrese su mail: ");
         String mail = scan.next();
         System.out.println("Ingrese la contraseña, debe contener al menos: 8 caracteres, una minuscula, una mayuscula y un numero:  ");
@@ -25,13 +27,18 @@ public class Main {
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
+			
+			// Esta línea hace que recursivamente hasta que no se registre
+			// no se va avanzar el menú
+			solicitarDatosYRegistrar(app);
 		}
     }
     
-    public void iniciarSesion(UsuarioApp app)
+    public static void iniciarSesion(UsuarioApp app)
     {
     	while (!app.estaLogeado())
     	{
+    		System.out.println("===== INICIAR SESIÓN =====");
         	System.out.println("ingrese el Dni");
             Scanner scan = new Scanner(System.in);
             int dni= scan.nextInt();
@@ -41,12 +48,23 @@ public class Main {
             
             app.iniciarSesion(dni, clave);
             if (!app.estaLogeado())
-            	System.out.println("Alguno de los datos ingresados no es correcto");
+            {
+            	System.out.println("La información ingresada es incorrecta");
+            	System.out.println("Desea registrase? y/n");
+            	String resp = scan.next();
+            	if (!resp.equals("y"))
+            		break;
+            	Main.solicitarDatosYRegistrar(app);
+            }
+            else
+            {
+            	System.out.println("Se ha iniciado sesión correctamente");
+            }
     	}
-    	System.out.println("Se ha iniciado sesión correctamente");
+   
     }
     
-    public void asociarTarjeta(UsuarioApp app, Usuario u)
+    public static void asociarTarjeta(UsuarioApp app, Usuario u)
     {
         Scanner scan = new Scanner(System.in);
         System.out.println("ingrese el numero de la tarjeta");
@@ -111,11 +129,46 @@ public class Main {
     }
     
     
+    
+    public static void mostrarMenuPrincipal(UsuarioApp app) {
+        Scanner scanner = new Scanner(System.in);
+
+        while (app.estaLogeado()) {
+            System.out.println("===== MENÚ PRINCIPAL =====");
+            System.out.println("1. Buscar viaje");
+            System.out.println("2. Salir");
+
+            System.out.print("Ingrese la opción deseada: ");
+            int opcion = scanner.nextInt();
+
+            switch (opcion) {
+                case 1:
+                    Main.buscarViaje(app);
+                    break;
+                case 2:
+                    System.out.println("Saliendo del programa...");
+                    app.deslogear();
+                    return;
+                default:
+                    System.out.println("Opción inválida. Por favor, ingrese una opción válida.");
+                    break;
+            }
+        }
+    }
+
+    
+    
+    
+    
+    
 	public static void main (String [ ] args) {
-		ArrayList<Omnibus> omnibus = new ArrayList<Omnibus>();
-    	
-    	Omnibus omLangeyu = new Omnibus("Plusmar");
-        omnibus.add(omLangeyu);
+		
+		// Cargamos la plataforma
+		
+		EmpresaTransporte plusmar = new EmpresaTransporte("Plusmar");
+		plusmar.addNewOmnibus();
+		Omnibus omLangeyu = plusmar.buscarOmnibus(1);
+		
         Viaje v1 = new Viaje("Tandil", "MDQ", LocalDateTime.of(2023, 6, 1, 21, 0), 2000, omLangeyu, null, null);
         omLangeyu.agregarItinerario(v1);
         Viaje v2 = new Viaje("Buenos Aires", "Mar del Plata", LocalDateTime.of(2023, 6, 2, 10, 30), 1800, omLangeyu, null, null);
@@ -125,8 +178,10 @@ public class Main {
         Viaje v4 = new Viaje("Mar del Plata", "Tandil", LocalDateTime.of(2023, 6, 4, 8, 45), 1900, omLangeyu, null, null);
         omLangeyu.agregarItinerario(v4);
     	
-        Omnibus omEmpresa = new Omnibus("Empresa");
-        omnibus.add(omEmpresa);
+		EmpresaTransporte balin = new EmpresaTransporte("Balin");
+		balin.addNewOmnibus();
+		Omnibus omEmpresa = plusmar.buscarOmnibus(1);
+		
         Viaje v5 = new Viaje("Córdoba", "Mendoza", LocalDateTime.of(2023, 6, 1, 9, 0), 3500, omEmpresa, null, null);
         omEmpresa.agregarItinerario(v5);
         Viaje v6 = new Viaje("Buenos Aires", "Rosario", LocalDateTime.of(2023, 6, 2, 12, 30), 1200, omEmpresa, null, null);
@@ -136,8 +191,11 @@ public class Main {
         Viaje v8 = new Viaje("Mendoza", "Buenos Aires", LocalDateTime.of(2023, 6, 4, 18, 20), 3200, omEmpresa, null, null);
         omEmpresa.agregarItinerario(v8);
 
-        Omnibus omFlecha = new Omnibus("Flecha");
-        omnibus.add(omFlecha);
+		EmpresaTransporte flecha = new EmpresaTransporte("Flecha");
+		flecha.addNewOmnibus();
+		Omnibus omFlecha = plusmar.buscarOmnibus(1);
+
+		
         Viaje v9 = new Viaje("Rosario", "Santa Fe", LocalDateTime.of(2023, 6, 1, 14, 0), 800, omFlecha, null, null);
         omFlecha.agregarItinerario(v9);
         Viaje v10 = new Viaje("Mar del Plata", "Buenos Aires", LocalDateTime.of(2023, 6, 2, 17, 45), 1500, omFlecha, null, null);
@@ -147,26 +205,23 @@ public class Main {
         Viaje v12 = new Viaje("Santa Fe", "Mar del Plata", LocalDateTime.of(2023, 6, 4, 12, 15), 2000, omFlecha, null, null);
         omFlecha.agregarItinerario(v12);
     	
-    	EmpresaTransporte langeyu = new EmpresaTransporte("Langeyú", omnibus);
+    	//EmpresaTransporte langeyu = new EmpresaTransporte("Langeyú", omnibus);
     	
     	ArrayList<EmpresaTransporte> empresas = new ArrayList<EmpresaTransporte>();
     	
-    	empresas.add(langeyu);
-    	
+    	empresas.add(plusmar);
+    	empresas.add(balin);
+    	empresas.add(flecha);
     	
     	Plataforma p = new Plataforma(empresas);
     	
 		
 		
-		
+		// Iniciamos la sesión del usuario que va a utilizar la aplicación
 		UsuarioApp app = new UsuarioApp(p);
-	
+
 		
-		// TODO: REGEX EN LA CLASE DE USUARIO NO EN LA ENTRADA DE DATOS!!
-		
-        //Usuario u = new Usuario("Juan", "Cruz", 44693208, "hola@gmail.com", "Pasaporte55");
-        //app.registrarUsuario(u);
-		//solicitarDatosYRegistrar(app);
-		buscarViaje(app);
+		Main.iniciarSesion(app);
+		Main.mostrarMenuPrincipal(app);
 	}
 }

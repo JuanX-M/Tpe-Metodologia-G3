@@ -18,6 +18,13 @@ public class UsuarioApp {
         this.logged=false;
     }
 
+    
+    public void deslogear()
+    {
+    	this.logged = false;
+    }
+    
+    
     public boolean iniciarSesion(int dni, String clave){
        	if (!logged)
        	{
@@ -27,8 +34,10 @@ public class UsuarioApp {
         	Condicion condicion = new CondicionMismoDni(dni);
         	Usuario usuarioRegistrado = userRegistro.buscarUsuarioPorCondicion(condicion).get(0); 
         	// hacemos el get(0) ya que deberia de ser un único usuario el que cumple la condicion
-        	this.logged = true;
-        	return usuarioRegistrado.coincide(clave);	
+        	boolean coincide = usuarioRegistrado.coincide(clave);
+        	if (coincide)
+        		this.logged = true;
+        	return coincide;	
        	}
        	return true;
     }
