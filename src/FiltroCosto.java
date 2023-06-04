@@ -10,7 +10,7 @@ public class FiltroCosto extends Filtro {
 
     public boolean cumple(Viaje v){
         
-        return piso > v.getPrecio() && techo < v.getPrecio(); 
+        return piso < v.getPrecio() && techo > v.getPrecio();
     }
 
 }
