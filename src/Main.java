@@ -67,35 +67,35 @@ public class Main {
     	
     	Omnibus omLangeyu = new Omnibus("Plusmar");
         omnibus.add(omLangeyu);
-        Viaje v1 = new Viaje("Tandil", "MDQ", LocalDateTime.of(2023, 6, 1, 21, 0), 2000, omLangeyu);
+        Viaje v1 = new Viaje("Tandil", "MDQ", LocalDateTime.of(2023, 6, 1, 21, 0), 2000, omLangeyu, null, null);
         omLangeyu.agregarItinerario(v1);
-        Viaje v2 = new Viaje("Buenos Aires", "Mar del Plata", LocalDateTime.of(2023, 6, 2, 10, 30), 1800, omLangeyu);
+        Viaje v2 = new Viaje("Buenos Aires", "Mar del Plata", LocalDateTime.of(2023, 6, 2, 10, 30), 1800, omLangeyu, null, null);
         omLangeyu.agregarItinerario(v2);
-        Viaje v3 = new Viaje("La Plata", "Bahía Blanca", LocalDateTime.of(2023, 6, 3, 16, 15), 2500, omLangeyu);
+        Viaje v3 = new Viaje("La Plata", "Bahía Blanca", LocalDateTime.of(2023, 6, 3, 16, 15), 2500, omLangeyu, null, null);
         omLangeyu.agregarItinerario(v3);
-        Viaje v4 = new Viaje("Mar del Plata", "Tandil", LocalDateTime.of(2023, 6, 4, 8, 45), 1900, omLangeyu);
+        Viaje v4 = new Viaje("Mar del Plata", "Tandil", LocalDateTime.of(2023, 6, 4, 8, 45), 1900, omLangeyu, null, null);
         omLangeyu.agregarItinerario(v4);
     	
         Omnibus omEmpresa = new Omnibus("Empresa");
         omnibus.add(omEmpresa);
-        Viaje v5 = new Viaje("Córdoba", "Mendoza", LocalDateTime.of(2023, 6, 1, 9, 0), 3500, omEmpresa);
+        Viaje v5 = new Viaje("Córdoba", "Mendoza", LocalDateTime.of(2023, 6, 1, 9, 0), 3500, omEmpresa, null, null);
         omEmpresa.agregarItinerario(v5);
-        Viaje v6 = new Viaje("Buenos Aires", "Rosario", LocalDateTime.of(2023, 6, 2, 12, 30), 1200, omEmpresa);
+        Viaje v6 = new Viaje("Buenos Aires", "Rosario", LocalDateTime.of(2023, 6, 2, 12, 30), 1200, omEmpresa, null, null);
         omEmpresa.agregarItinerario(v6);
-        Viaje v7 = new Viaje("Santa Fe", "Córdoba", LocalDateTime.of(2023, 6, 3, 15, 45), 1800, omEmpresa);
+        Viaje v7 = new Viaje("Santa Fe", "Córdoba", LocalDateTime.of(2023, 6, 3, 15, 45), 1800, omEmpresa, null, null);
         omEmpresa.agregarItinerario(v7);
-        Viaje v8 = new Viaje("Mendoza", "Buenos Aires", LocalDateTime.of(2023, 6, 4, 18, 20), 3200, omEmpresa);
+        Viaje v8 = new Viaje("Mendoza", "Buenos Aires", LocalDateTime.of(2023, 6, 4, 18, 20), 3200, omEmpresa, null, null);
         omEmpresa.agregarItinerario(v8);
 
         Omnibus omFlecha = new Omnibus("Flecha");
         omnibus.add(omFlecha);
-        Viaje v9 = new Viaje("Rosario", "Santa Fe", LocalDateTime.of(2023, 6, 1, 14, 0), 800, omFlecha);
+        Viaje v9 = new Viaje("Rosario", "Santa Fe", LocalDateTime.of(2023, 6, 1, 14, 0), 800, omFlecha, null, null);
         omFlecha.agregarItinerario(v9);
-        Viaje v10 = new Viaje("Mar del Plata", "Buenos Aires", LocalDateTime.of(2023, 6, 2, 17, 45), 1500, omFlecha);
+        Viaje v10 = new Viaje("Mar del Plata", "Buenos Aires", LocalDateTime.of(2023, 6, 2, 17, 45), 1500, omFlecha, null, null);
         omFlecha.agregarItinerario(v10);
-        Viaje v11 = new Viaje("Córdoba", "Rosario", LocalDateTime.of(2023, 6, 3, 9, 30), 1000, omFlecha);
+        Viaje v11 = new Viaje("Córdoba", "Rosario", LocalDateTime.of(2023, 6, 3, 9, 30), 1000, omFlecha, null, null);
         omFlecha.agregarItinerario(v11);
-        Viaje v12 = new Viaje("Santa Fe", "Mar del Plata", LocalDateTime.of(2023, 6, 4, 12, 15), 2000, omFlecha);
+        Viaje v12 = new Viaje("Santa Fe", "Mar del Plata", LocalDateTime.of(2023, 6, 4, 12, 15), 2000, omFlecha, null, null);
         omFlecha.agregarItinerario(v12);
     	
     	EmpresaTransporte langeyu = new EmpresaTransporte("Langeyú", omnibus);

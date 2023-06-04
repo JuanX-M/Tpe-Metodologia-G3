@@ -1,26 +1,26 @@
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 
 public class FiltroMargenHorario extends Filtro {
 
-    private LocalDateTime salida;
-    private LocalDateTime llegada;
+    private LocalTime salida;
+    private LocalTime llegada;
     
-    public FiltroMargenHorario(LocalDateTime salida, LocalDateTime llegada){
+    public FiltroMargenHorario(LocalTime salida, LocalTime llegada){
         this.salida = salida;
         this.llegada = llegada;
     }
 
     public boolean cumple(Viaje v){
         // viaje tiene solo una fecha, hay que poner salida y llegada
-        return v.getSalida.isAfter(salida) && v.getllegada.isBefore(llegada);
+        return v.getSalida().isAfter(salida) && v.getLlegada().isBefore(llegada);
     }
 
-    public LocalDateTime getSalida() {
+    public LocalTime getSalida() {
         return salida;
     }
 
-    public LocalDateTime getLlegada() {
+    public LocalTime getLlegada() {
         return llegada;
     }
 

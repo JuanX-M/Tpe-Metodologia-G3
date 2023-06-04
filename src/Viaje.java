@@ -1,3 +1,4 @@
+import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -7,19 +8,28 @@ public class Viaje {
     private LocalDateTime fecha;
     private double precio;
     private Omnibus omnibus;
-
-    public Viaje(String origen, String destino, LocalDateTime fecha, double precio, Omnibus om) {
+    private LocalTime horaLlegada;
+    private LocalTime horaSalida;
+    
+    
+    public Viaje(String origen, 
+    		String destino, LocalDateTime fecha, 
+    		double precio, Omnibus om, LocalTime llegada, LocalTime salida) {
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
         this.precio = precio;
         this.omnibus = om;
+        this.horaLlegada = llegada;
+        this.horaSalida = salida;
     }
     
-
+    
+    
+    
     @Override
 	public String toString() {
-		return "Viaje [origen=" + origen + ", destino=" + destino + ", fecha=" + fecha + ", precio=" + precio + "]";
+		return "";
 	}
 
 
@@ -29,6 +39,16 @@ public class Viaje {
     public double getPrecio() { return precio; }
     public Omnibus getOmnibus() { return omnibus; }
     
+
+    public LocalTime getLlegada()
+    {
+    	return this.horaLlegada;
+    }
+    
+    public LocalTime getSalida()
+    {
+    	return this.horaSalida;
+    }
     
     public void setOrigen(String origen) {
         this.origen = origen;

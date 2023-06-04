@@ -3,7 +3,7 @@ public class FiltroEmpresa extends Filtro {
     private EmpresaTransporte empresa;
 
     public FiltroEmpresa(EmpresaTransporte empresa){
-        this.EmpresaTransporte = empresa;
+        this.empresa = empresa;
     }
 
     public boolean cumple(Viaje v){

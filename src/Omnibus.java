@@ -13,9 +13,6 @@ public class Omnibus {
         asientos= new ArrayList<Asiento>();
     }
 
-    public String getNombreEmpresa() {
-        return nombreEmpresa;
-    }
 
     public ArrayList<Viaje> getItinerario(){
         ArrayList<Viaje> copia = new ArrayList<Viaje>();
@@ -41,13 +38,19 @@ public class Omnibus {
         return copia;
     }
 
-    public void setNombreEmpresa(String nombreEmpresa) {
-        this.nombreEmpresa = nombreEmpresa;
-    }
     public void agregarItinerario(Viaje viaje){
         this.itinerario.add(viaje);
     }
     public void agregarAsiento(Asiento asiento){
         this.asientos.add(asiento);
     }
+    
+    public String getNombreEmpresa() {
+        return nombreEmpresa;
+    }
+
+    public void setNombreEmpresa(String nombreEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+    }
+
 }

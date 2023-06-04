@@ -47,25 +47,7 @@ public class Administrador {
         this.email = email;
     }
 
-    public boolean verificarDatos(Viaje viaje){
-    	return (viaje.getDestino() == null && 
-    		    viaje.getFecha() == null &&
-    		    viaje.getOrigen() == null &&
-    		    viaje.getOmnibus() == null &&
-    		    viaje.getPrecio() == 0.0);
-    }
-
     public void darAlta(Viaje viaje, Omnibus omnibus){
-        Scanner scan= new Scanner(System.in);
-        System.out.println("presione 1 si desea verificar los datos");
-        int opcion= scan.nextInt();
-        if(opcion==1){
-            if(this.verificarDatos(viaje)){
-                omnibus.agregarItinerario(viaje);
-                System.out.println("el viaje se dio de alta");
-            }
-        }else{
-            System.out.println("el viaje no se dio de alta");
-        }
+    	omnibus.agregarItinerario(viaje);
     }
 }
