@@ -78,35 +78,46 @@ public class Main {
     public static void asociarTarjeta(UsuarioApp app, Usuario u)
     {
         Scanner scan = new Scanner(System.in);
-        System.out.println("ingrese el numero de la tarjeta");
-        
-        long numero = scan.nextInt();
-        //se verifica que la longitud de la tarjeta sea de 16 digitos
-        String numeroString = Long.toString(numero);
-        int cantDigitos = numeroString.length();
-        if(cantDigitos == 16){
-            System.out.println("ingrese el nombre del titular de la tarjeta");
-            String titular = scan.next();
-            System.out.println("ingrese el banco de la tarjeta");
-            String banco = scan.next();
-            System.out.println("ingrese la marca de la tarjeta");
-            String marca = scan.next();
+        int a = 1;
+        while(a == 1){
+            System.out.println("ingrese el numero de la tarjeta");
 
-            System.out.println("ingrese la fecha de vencimiento de la tarjeta");
-            LocalDate fecha = LocalDate.parse(scan.next());
-            if (!fecha.isBefore(LocalDate.now())) {
-                System.out.println("ingrese el codigo de seguridad ");
-                int codigo = scan.nextInt();
+            long numero = scan.nextInt();
+            //se verifica que la longitud de la tarjeta sea de 16 digitos
+            String numeroString = Long.toString(numero);
+            int cantDigitos = numeroString.length();
+            if(cantDigitos == 16){
+                System.out.println("ingrese el nombre del titular de la tarjeta");
+                String titular = scan.next();
+                System.out.println("ingrese el banco de la tarjeta");
+                String banco = scan.next();
+                System.out.println("ingrese la marca de la tarjeta");
+                String marca = scan.next();
 
-                TarjetaDeCredito tarjeta = new TarjetaDeCredito(titular, numero, fecha, codigo, banco, marca);
-                app.asociarTarjeta(u, tarjeta);
+                System.out.println("ingrese la fecha de vencimiento de la tarjeta");
+                LocalDate fecha = LocalDate.parse(scan.next());
+                if (!fecha.isBefore(LocalDate.now())) {
+                    System.out.println("ingrese el codigo de seguridad ");
+                    int codigo = scan.nextInt();
 
-                System.out.println("la tarjeta fue asociada correctamente");
-            } else {
-                System.out.println("la tarjeta a ingresada esta vencida");
+                    TarjetaDeCredito tarjeta = new TarjetaDeCredito(titular, numero, fecha, codigo, banco, marca);
+                    app.asociarTarjeta(u, tarjeta);
+
+                    System.out.println("la tarjeta fue asociada correctamente");
+                    a = 0;
+                } else {
+                    System.out.println("la tarjeta a ingresada esta vencida, desea ingresarla devuelta? : si= 1  no = 0");
+                    a = scan.nextInt();
+                }
+            } else{
+                System.out.println("El numero de tarjeta ingresado no contiene 16 digitos, desea ingresarla devuelta? : si= 1  no = 0");
+                a = scan.nextInt();
+
             }
-        } else
-            System.out.println("El numero de tarjeta ingresado no contiene 16 digitos");
+
+
+        }
+
 
     }
     
