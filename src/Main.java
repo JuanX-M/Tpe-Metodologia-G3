@@ -81,10 +81,7 @@ public class Main {
         String banco = scan.next();
         System.out.println("ingrese la marca de la tarjeta");
         String marca = scan.next();
-        
-        
-        
-        
+
         System.out.println("ingrese la fecha de vencimiento de la tarjeta");
         LocalDate fecha = LocalDate.parse(scan.next());
         if (!fecha.isBefore(LocalDate.now())) {
@@ -307,12 +304,19 @@ public class Main {
 		Omnibus omEmpresa = plusmar.buscarOmnibus(1);
 		
         Viaje v5 = new Viaje("Córdoba", "Mendoza", LocalDateTime.of(2023, 6, 1, 9, 0), 3500, omEmpresa, null, null);
+        v5.addRecorridoIntermedio("Ciudad de Rio Tercero");
+        v5.addRecorridoIntermedio("San Luis");
         omEmpresa.agregarItinerario(v5);
         Viaje v6 = new Viaje("Buenos Aires", "Rosario", LocalDateTime.of(2023, 6, 2, 12, 30), 1200, omEmpresa, null, null);
+        v6.addRecorridoIntermedio("Zarate");
+        v6.addRecorridoIntermedio("Arroyo Seco");
         omEmpresa.agregarItinerario(v6);
         Viaje v7 = new Viaje("Santa Fe", "Córdoba", LocalDateTime.of(2023, 6, 3, 15, 45), 1800, omEmpresa, null, null);
+        v7.addRecorridoIntermedio("San Francisco");
+        v7.addRecorridoIntermedio("Arroyito");
         omEmpresa.agregarItinerario(v7);
         Viaje v8 = new Viaje("Mendoza", "Buenos Aires", LocalDateTime.of(2023, 6, 4, 18, 20), 3200, omEmpresa, null, null);
+        v8.addRecorridoIntermedio("San Luis");
         omEmpresa.agregarItinerario(v8);
 
 		EmpresaTransporte flecha = new EmpresaTransporte("Flecha");
@@ -325,8 +329,11 @@ public class Main {
         Viaje v10 = new Viaje("Mar del Plata", "Buenos Aires", LocalDateTime.of(2023, 6, 2, 17, 45), 1500, omFlecha, null, null);
         omFlecha.agregarItinerario(v10);
         Viaje v11 = new Viaje("Córdoba", "Rosario", LocalDateTime.of(2023, 6, 3, 9, 30), 1000, omFlecha, null, null);
+        v11.addRecorridoIntermedio("Villa Maria");
         omFlecha.agregarItinerario(v11);
         Viaje v12 = new Viaje("Santa Fe", "Mar del Plata", LocalDateTime.of(2023, 6, 4, 12, 15), 2000, omFlecha, null, null);
+        v12.addRecorridoIntermedio("Rosario");
+        v12.addRecorridoIntermedio("Buenos Aires");
         omFlecha.agregarItinerario(v12);
     	
     	//EmpresaTransporte langeyu = new EmpresaTransporte("Langeyú", omnibus);
