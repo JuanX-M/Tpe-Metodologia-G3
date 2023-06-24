@@ -82,7 +82,7 @@ public class Main {
         while(a == 1){
             System.out.println("ingrese el numero de la tarjeta");
 
-            long numero = scan.nextInt();
+            long numero = scan.nextLong();
             //se verifica que la longitud de la tarjeta sea de 16 digitos
             String numeroString = Long.toString(numero);
             int cantDigitos = numeroString.length();
