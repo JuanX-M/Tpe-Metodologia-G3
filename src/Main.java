@@ -30,6 +30,11 @@ public class Main {
         try {
             Usuario u = new Usuario(nombre, apellido, dni, mail, clave);
             app.registrarUsuario(u);
+            System.out.println("desea asociar una tarjeta?: si=1  no=0");
+            int op = scan.nextInt();
+            if(op==1){
+                Main.asociarTarjeta(app, u);
+            }
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
@@ -74,6 +79,7 @@ public class Main {
     {
         Scanner scan = new Scanner(System.in);
         System.out.println("ingrese el numero de la tarjeta");
+        
         long numero = scan.nextInt();
         //se verifica que la longitud de la tarjeta sea de 16 digitos
         String numeroString = Long.toString(numero);
@@ -347,7 +353,7 @@ public class Main {
         v12.addRecorridoIntermedio("Rosario");
         v12.addRecorridoIntermedio("Buenos Aires");
         omFlecha.agregarItinerario(v12);
-        Viaje v13 = new Viaje("Tandil", "MDQ", LocalDateTime.of(2023, 6, 1, 21, 0), 1800, omLangeyu, null, null);
+        Viaje v13 = new Viaje("Tandil", "MDQ", LocalDateTime.of(2023, 6, 1, 21, 0), 1800, omFlecha, null, null);
         v13.addRecorridoIntermedio("Necochea");
         omFlecha.agregarItinerario(v13);
     	//EmpresaTransporte langeyu = new EmpresaTransporte("Langeyú", omnibus);
