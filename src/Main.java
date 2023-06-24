@@ -5,10 +5,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//TODO: prueba
+
 
 // TODO: refactorizar lógica del menú en una clase
-//TODO prueba
+
 
 public class Main {
 
