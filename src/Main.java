@@ -296,10 +296,16 @@ public class Main {
         v1.addRecorridoIntermedio("San Manuel");
         omLangeyu.agregarItinerario(v1);
         Viaje v2 = new Viaje("Buenos Aires", "Mar del Plata", LocalDateTime.of(2023, 6, 2, 10, 30), 1800, omLangeyu, null, null);
+        v2.addRecorridoIntermedio("Tandil");
+        v2.addRecorridoIntermedio("Rauch");
         omLangeyu.agregarItinerario(v2);
         Viaje v3 = new Viaje("La Plata", "Bahía Blanca", LocalDateTime.of(2023, 6, 3, 16, 15), 2500, omLangeyu, null, null);
+        v3.addRecorridoIntermedio("Olavarria");
+        v3.addRecorridoIntermedio("Azul");
         omLangeyu.agregarItinerario(v3);
         Viaje v4 = new Viaje("Mar del Plata", "Tandil", LocalDateTime.of(2023, 6, 4, 8, 45), 1900, omLangeyu, null, null);
+        v4.addRecorridoIntermedio("Napaleofú");
+        v4.addRecorridoIntermedio("Balcarce");
         omLangeyu.agregarItinerario(v4);
     	
 		EmpresaTransporte balin = new EmpresaTransporte("Balin");
