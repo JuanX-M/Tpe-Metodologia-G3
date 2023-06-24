@@ -7,6 +7,7 @@ public class Viaje {
     private String destino;
     private LocalDateTime fecha;
     private double precio;
+
     private Omnibus omnibus;
     private LocalTime horaLlegada;
     private LocalTime horaSalida;

@@ -284,9 +284,9 @@ public class Main {
 		
 		// Cargamos la plataforma
 		
-		EmpresaTransporte plusmar = new EmpresaTransporte("Plusmar");
-		plusmar.addNewOmnibus();
-		Omnibus omLangeyu = plusmar.buscarOmnibus(1);
+		EmpresaTransporte langueyu = new EmpresaTransporte("Langueyu");
+		langueyu.addNewOmnibus();
+		Omnibus omLangeyu = langueyu.buscarOmnibus(1);
 		
         Viaje v1 = new Viaje("Tandil", "MDQ", LocalDateTime.of(2023, 6, 1, 21, 0), 2000, omLangeyu, null, null);
         v1.addRecorridoIntermedio("Necochea");
@@ -307,27 +307,27 @@ public class Main {
     	
 		EmpresaTransporte balin = new EmpresaTransporte("Balin");
 		balin.addNewOmnibus();
-		Omnibus omEmpresa = plusmar.buscarOmnibus(1);
+		Omnibus omBalin = balin.buscarOmnibus(1);
 		
-        Viaje v5 = new Viaje("Córdoba", "Mendoza", LocalDateTime.of(2023, 6, 1, 9, 0), 3500, omEmpresa, null, null);
+        Viaje v5 = new Viaje("Córdoba", "Mendoza", LocalDateTime.of(2023, 6, 1, 9, 0), 3500, omBalin, null, null);
         v5.addRecorridoIntermedio("Ciudad de Rio Tercero");
         v5.addRecorridoIntermedio("San Luis");
-        omEmpresa.agregarItinerario(v5);
-        Viaje v6 = new Viaje("Buenos Aires", "Rosario", LocalDateTime.of(2023, 6, 2, 12, 30), 1200, omEmpresa, null, null);
+        omBalin.agregarItinerario(v5);
+        Viaje v6 = new Viaje("Buenos +Aires", "Rosario", LocalDateTime.of(2023, 6, 2, 12, 30), 1200, omBalin, null, null);
         v6.addRecorridoIntermedio("Zarate");
         v6.addRecorridoIntermedio("Arroyo Seco");
-        omEmpresa.agregarItinerario(v6);
-        Viaje v7 = new Viaje("Santa Fe", "Córdoba", LocalDateTime.of(2023, 6, 3, 15, 45), 1800, omEmpresa, null, null);
+        omBalin.agregarItinerario(v6);
+        Viaje v7 = new Viaje("Santa Fe", "Córdoba", LocalDateTime.of(2023, 6, 3, 15, 45), 1800, omBalin, null, null);
         v7.addRecorridoIntermedio("San Francisco");
         v7.addRecorridoIntermedio("Arroyito");
-        omEmpresa.agregarItinerario(v7);
-        Viaje v8 = new Viaje("Mendoza", "Buenos Aires", LocalDateTime.of(2023, 6, 4, 18, 20), 3200, omEmpresa, null, null);
+        omBalin.agregarItinerario(v7);
+        Viaje v8 = new Viaje("Mendoza", "Buenos Aires", LocalDateTime.of(2023, 6, 4, 18, 20), 3200, omBalin, null, null);
         v8.addRecorridoIntermedio("San Luis");
-        omEmpresa.agregarItinerario(v8);
+        omBalin.agregarItinerario(v8);
 
 		EmpresaTransporte flecha = new EmpresaTransporte("Flecha");
 		flecha.addNewOmnibus();
-		Omnibus omFlecha = plusmar.buscarOmnibus(1);
+		Omnibus omFlecha = flecha.buscarOmnibus(1);
 
 		
         Viaje v9 = new Viaje("Rosario", "Santa Fe", LocalDateTime.of(2023, 6, 1, 14, 0), 800, omFlecha, null, null);
@@ -341,12 +341,14 @@ public class Main {
         v12.addRecorridoIntermedio("Rosario");
         v12.addRecorridoIntermedio("Buenos Aires");
         omFlecha.agregarItinerario(v12);
-    	
+        Viaje v13 = new Viaje("Tandil", "MDQ", LocalDateTime.of(2023, 6, 1, 21, 0), 1800, omLangeyu, null, null);
+        v13.addRecorridoIntermedio("Necochea");
+        omFlecha.agregarItinerario(v13);
     	//EmpresaTransporte langeyu = new EmpresaTransporte("Langeyú", omnibus);
     	
     	ArrayList<EmpresaTransporte> empresas = new ArrayList<EmpresaTransporte>();
     	
-    	empresas.add(plusmar);
+    	empresas.add(langueyu);
     	empresas.add(balin);
     	empresas.add(flecha);
     	
