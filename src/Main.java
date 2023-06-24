@@ -9,7 +9,6 @@ import java.util.Scanner;
 
 // TODO: refactorizar lógica del menú en una clase
 
-
 public class Main {
 
 	
@@ -123,7 +122,8 @@ public class Main {
         // dia, mes, LocalDate.now().getYear()
         LocalDate fecha = LocalDate.of(LocalDate.now().getYear(), mes, dia); // "Tandil", "MDQ", LocalDate.of(2023, 6, 1)
         ArrayList<Viaje> viajesBuscados = app.buscarViaje(origen, destino, fecha);
-        
+
+
         Main.mostrarViajes(viajesBuscados);
         
         boolean seleccionando = true;
@@ -238,7 +238,9 @@ public class Main {
     public static void mostrarViajes(ArrayList<Viaje> viajes)
     {
         if (viajes.isEmpty())
-        	System.out.println("No se encontraron viajes para la entrada dada. ");
+            System.out.println("No se encontraron viajes para la entrada dada. ");
+
+
         
         for (int i = 0; i < viajes.size(); i++)
         {
@@ -290,6 +292,8 @@ public class Main {
 		Omnibus omLangeyu = plusmar.buscarOmnibus(1);
 		
         Viaje v1 = new Viaje("Tandil", "MDQ", LocalDateTime.of(2023, 6, 1, 21, 0), 2000, omLangeyu, null, null);
+        v1.addRecorridoIntermedio("Necochea");
+        v1.addRecorridoIntermedio("San Manuel");
         omLangeyu.agregarItinerario(v1);
         Viaje v2 = new Viaje("Buenos Aires", "Mar del Plata", LocalDateTime.of(2023, 6, 2, 10, 30), 1800, omLangeyu, null, null);
         omLangeyu.agregarItinerario(v2);

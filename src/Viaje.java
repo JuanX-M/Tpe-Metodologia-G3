@@ -1,7 +1,7 @@
 import java.time.LocalTime;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-
+import java.util.ArrayList;
 public class Viaje {
     private String origen;
     private String destino;
@@ -10,7 +10,7 @@ public class Viaje {
     private Omnibus omnibus;
     private LocalTime horaLlegada;
     private LocalTime horaSalida;
-    
+    private ArrayList<String> recorridosIntermedios;
     
     public Viaje(String origen, 
     		String destino, LocalDateTime fecha, 
@@ -22,6 +22,7 @@ public class Viaje {
         this.omnibus = om;
         this.horaLlegada = llegada;
         this.horaSalida = salida;
+        recorridosIntermedios= new ArrayList<String>();
     }
     
     
@@ -30,10 +31,27 @@ public class Viaje {
     @Override
 	public String toString() {
     	// TODO: agregar recorridos intermedios?
-		return "Empresa: " + omnibus.getNombreEmpresa() + " | hora de llegada: " + horaLlegada + " | hora de salida: " + horaSalida;
+		return "Empresa: " + omnibus.getNombreEmpresa() + " | hora de llegada: " + horaLlegada + " | hora de salida: " + horaSalida
+                      + "| recorridos intermedios: " + this.imprimirRecorridosIntermedios();
 	}
 
+    public String imprimirRecorridosIntermedios(){
+        StringBuilder sb=new StringBuilder();
 
+        for(String s:recorridosIntermedios){
+            sb.append(s);
+            sb.append(" - ");
+        }
+        return sb.toString();
+    }
+
+    public ArrayList<String> getRecorridosIntermedios(){
+        return  new ArrayList<String>(this.recorridosIntermedios);
+    }
+    public void addRecorridoIntermedio(String recorrido){
+        if(!recorridosIntermedios.contains(recorrido))
+            recorridosIntermedios.add(recorrido);
+    }
 	public String getOrigen() { return origen; }
     public String getDestino() { return destino; }
     public LocalDateTime getFecha() { return fecha; }
@@ -70,4 +88,5 @@ public class Viaje {
     public void setOmnibus(Omnibus omnibus) {
         this.omnibus = omnibus;
     }
+
 }
