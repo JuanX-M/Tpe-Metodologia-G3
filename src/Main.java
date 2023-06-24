@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import java.time.format.DateTimeParseException;
 
 
 // TODO: refactorizar lógica del menú en una clase
@@ -95,7 +95,9 @@ public class Main {
                 String marca = scan.next();
 
                 System.out.println("ingrese la fecha de vencimiento de la tarjeta");
-                LocalDate fecha = LocalDate.parse(scan.next());
+                String fechaTexto = scan.next(); //ingresa la fecha asi dd/MM/yyyy
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate fecha = LocalDate.parse(fechaTexto, formatter);
                 if (!fecha.isBefore(LocalDate.now())) {
                     System.out.println("ingrese el codigo de seguridad ");
                     int codigo = scan.nextInt();
