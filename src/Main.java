@@ -94,8 +94,8 @@ public class Main {
                 System.out.println("ingrese la marca de la tarjeta");
                 String marca = scan.next();
 
-                System.out.println("ingrese la fecha de vencimiento de la tarjeta");
-                String fechaTexto = scan.next(); //ingresa la fecha asi dd/MM/yyyy
+                System.out.println("ingrese la fecha de vencimiento de la tarjeta en el formato dd/MM/yyyy");
+                String fechaTexto = scan.next();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate fecha = LocalDate.parse(fechaTexto, formatter);
                 if (!fecha.isBefore(LocalDate.now())) {
