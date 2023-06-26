@@ -1,0 +1,2 @@
+origen, destino, nomEmpresa, codOmnibus, precio, fecha, horaSalida, horaLlegada, intermedios
+Bariloche,Buenos Aires,Transporte Argentino,1,9000,2023-06-01,14:00,15:00,Necochea;Tandil

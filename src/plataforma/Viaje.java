@@ -1,11 +1,11 @@
 package plataforma;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 public class Viaje {
     private String origen;
     private String destino;
-    private LocalDateTime fecha;
+    private LocalDate fecha;
     private double precio;
 
     private Omnibus omnibus;
@@ -14,7 +14,7 @@ public class Viaje {
     private ArrayList<String> recorridosIntermedios;
     
     public Viaje(String origen, 
-    		String destino, LocalDateTime fecha, 
+    		String destino, LocalDate fecha, 
     		double precio, Omnibus om, LocalTime llegada, LocalTime salida) {
         this.origen = origen;
         this.destino = destino;
@@ -31,7 +31,6 @@ public class Viaje {
     
     @Override
 	public String toString() {
-    	// TODO: agregar recorridos intermedios?
 		return "Empresa: " + omnibus.getNombreEmpresa() + " | hora de llegada: " + horaLlegada + " | hora de salida: " + horaSalida
                       + "| recorridos intermedios: " + this.imprimirRecorridosIntermedios();
 	}
@@ -55,7 +54,7 @@ public class Viaje {
     }
 	public String getOrigen() { return origen; }
     public String getDestino() { return destino; }
-    public LocalDateTime getFecha() { return fecha; }
+    public LocalDate getFecha() { return fecha; }
     public double getPrecio() { return precio; }
     public Omnibus getOmnibus() { return omnibus; }
     
@@ -78,7 +77,7 @@ public class Viaje {
         this.destino = destino;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
     

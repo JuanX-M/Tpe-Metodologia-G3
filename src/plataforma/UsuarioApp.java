@@ -7,7 +7,7 @@ public class UsuarioApp {
     private RegistroUsuario userRegistro;
     //private Plataforma plataforma;
     private boolean logged;
-    Plataforma p;
+    private Plataforma p;
     public UsuarioApp(Plataforma p){
     	this.p = p;
         this.userRegistro=new RegistroUsuario();
@@ -66,7 +66,10 @@ public class UsuarioApp {
            return p.buscarViaje(origen, destino, fecha);
     }
     
-    
+    public Plataforma getPlataforma()
+    {
+    	return p;
+    }
     
     public ArrayList<Viaje> filtrar(ArrayList<Viaje> viajes, Filtro f){
         ArrayList<Viaje> res = new ArrayList<Viaje>();

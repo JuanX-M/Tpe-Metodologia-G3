@@ -57,7 +57,7 @@ public class Registro extends JPanel {
         JButton botonVolver = new JButton("Volver");
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	vista.mostrarInicio();
+            	vista.mostrar(Vista.INICIO_SESION);;
             }
         });
         

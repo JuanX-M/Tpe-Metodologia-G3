@@ -1,6 +1,5 @@
 package plataforma;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 public class Omnibus {
     private EmpresaTransporte empresaDuenia;
@@ -32,7 +31,7 @@ public class Omnibus {
         for (Viaje viaje : this.getItinerario()) {
             if (viaje.getOrigen().equals(origen) 
             		&& viaje.getDestino().equals(destino) 
-            		&& viaje.getFecha().toLocalDate().equals(fecha)) {
+            		&& viaje.getFecha().equals(fecha)) {
                 viajes.add(viaje);
             }
         }

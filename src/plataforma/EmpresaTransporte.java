@@ -1,6 +1,5 @@
 package plataforma;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class EmpresaTransporte {
@@ -12,10 +11,18 @@ public class EmpresaTransporte {
         this.nombre = nombre; 
         //this.reservas = new RegistroCompras();
     }
-
-    public void addNewOmnibus()
+    
+    public boolean equals(Object o)
     {
-    	Omnibus nuevoOmnibus = new Omnibus(this, omnibus.size() + 1);
+    	EmpresaTransporte otraEmpresa = (EmpresaTransporte) o;
+    	return this.getNombre().equals(otraEmpresa.getNombre());
+    }
+    
+    
+
+    public void addNewOmnibus(int codOmnibus)
+    {
+    	Omnibus nuevoOmnibus = new Omnibus(this, codOmnibus);
     	omnibus.add(nuevoOmnibus);
     }
     

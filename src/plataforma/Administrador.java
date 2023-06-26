@@ -1,5 +1,5 @@
 package plataforma;
-public class Administrador extends Usuario{
+public class Administrador extends Usuario {
 
 
     public Administrador(String nombre, String apellido, int dNI, String mail, String clave) throws Exception {
@@ -13,6 +13,11 @@ public class Administrador extends Usuario{
     	return "Administrador " + super.getNombre();
     }
     
+    
+    public boolean esAdmin()
+    {
+    	return true;
+    }
     
 	public void darAlta(Viaje viaje, Omnibus omnibus){
     	omnibus.agregarItinerario(viaje);

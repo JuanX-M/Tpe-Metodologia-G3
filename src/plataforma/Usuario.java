@@ -52,7 +52,10 @@ public class Usuario {
     	return this.clave.equals(claveSupuesta);
     }
     
-    
+    public boolean esAdmin()
+    {
+    	return false;
+    }
     
     @Override
     public boolean equals(Object o)

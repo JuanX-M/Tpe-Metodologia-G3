@@ -1,6 +1,8 @@
 package interfaz;
 import javax.swing.*;
 
+import plataforma.CondicionMismoDni;
+import plataforma.Usuario;
 import plataforma.UsuarioApp;
 
 import java.awt.*;
@@ -59,7 +61,7 @@ public class InicioSesion extends JPanel {
         JButton botonRegistrar = new JButton("Registrarse");
         botonRegistrar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                vista.mostrarRegistro();
+                vista.mostrar(Vista.REGISTRO);;
             }
         });
         buttonPanel.add(botonRegistrar);
@@ -84,8 +86,12 @@ public class InicioSesion extends JPanel {
         app.iniciarSesion(dni, clave);
         if (app.estaLogeado()) {
             mostrarMensaje("Inicio de sesión exitoso");
-            vista.mostrarMenu();
-            //cardLayout.show(cardPanel, "menu");
+            
+            Usuario u = app.buscarUsuario(new CondicionMismoDni(dni)).get(0);
+            String redireccionar = Vista.MENU;
+            if (u.esAdmin())
+            	redireccionar = Vista.MENU_ADMIN;
+            this.vista.mostrar(redireccionar);
         } else {
             mostrarMensaje("Inicio de sesión fallido");
         }

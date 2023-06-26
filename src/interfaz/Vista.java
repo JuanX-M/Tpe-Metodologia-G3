@@ -1,17 +1,19 @@
 package interfaz;
-import javax.swing.*;
+import java.awt.BorderLayout;
+import java.awt.CardLayout;
 
+import javax.swing.JPanel;
+
+import plataforma.Administrador;
+import plataforma.Usuario;
 import plataforma.UsuarioApp;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class Vista extends JPanel {
 
 	public static final String INICIO_SESION = "INICIO_SESION";
 	public static final String REGISTRO = "REGISTRO";
 	public static final String MENU = "MENU";
+	public static final String MENU_ADMIN = "MENU_ADMIN";
 	public static final String BUSCAR_VIAJE = "BUSCAR_VIAJE";
 	public static final String ASOCIAR_TARJETA = "ASOCIAR_TARJETA";
 	
@@ -32,37 +34,22 @@ public class Vista extends JPanel {
         Registro registroPanel = new Registro(app, this);
         InicioSesion inicioSesion = new InicioSesion(app, this);
         Menu menuPanel = new Menu(this);
+        MenuAdmin menuAdmin = new MenuAdmin(this, app.getPlataforma());
         BuscarViaje buscarViaje = new BuscarViaje(app, this);
         
         
         inicioPanel.add(inicioSesion, INICIO_SESION);
         inicioPanel.add(registroPanel, REGISTRO);
         inicioPanel.add(menuPanel, MENU);
+        inicioPanel.add(menuAdmin, MENU_ADMIN);
         inicioPanel.add(buscarViaje, BUSCAR_VIAJE);
         
         add(inicioPanel, BorderLayout.CENTER);
     }
 
-
-    public void mostrarMenu() {
-        cardLayout.show(inicioPanel, MENU);
+    public void mostrar(String PANEL_NAME) {
+        cardLayout.show(inicioPanel, PANEL_NAME);
     }
     
-
-    public void mostrarBuscarViaje() {
-        cardLayout.show(inicioPanel, BUSCAR_VIAJE);
-    }
-    
-    public void mostrarInicio() {
-        cardLayout.show(inicioPanel, INICIO_SESION);
-    }
-
-    /**
-     * Muestra el formulario de registro.
-     */
-    public void mostrarRegistro() {
-        cardLayout.show(inicioPanel, REGISTRO);
-    }
-
 }
 

@@ -69,7 +69,7 @@ public class BuscarViaje extends JPanel {
             }
         });
         
-        filtrado = new Filtrado();
+        filtrado = new Filtrado(app);
         add(filtrado, BorderLayout.EAST);
         
         

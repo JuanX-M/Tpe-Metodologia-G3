@@ -37,7 +37,7 @@ public class Menu extends JPanel {
         btnBuscarViaje = new JButton("Buscar viaje");
         btnBuscarViaje.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                vista.mostrarBuscarViaje();
+                vista.mostrar(Vista.BUSCAR_VIAJE);;
             }
         });
         
