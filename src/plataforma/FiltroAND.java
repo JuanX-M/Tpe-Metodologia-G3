@@ -1,3 +1,7 @@
+package plataforma;
+
+
+
 public class FiltroAND extends Filtro {
 
 	Filtro f1;

@@ -1,3 +1,5 @@
+package plataforma;
+
 public class FiltroEmpresa extends Filtro {
 
     private String nombre;

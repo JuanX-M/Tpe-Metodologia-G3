@@ -1,3 +1,4 @@
+package plataforma;
 public class Asiento {
     private int numero;
     private boolean reservado;

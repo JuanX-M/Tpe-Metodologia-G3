@@ -1,6 +1,4 @@
-
-
-
+package plataforma;
 public class Administrador extends Usuario{
 
 

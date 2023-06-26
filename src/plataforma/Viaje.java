@@ -1,6 +1,6 @@
-import java.time.LocalTime;
-import java.time.LocalDate;
+package plataforma;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 public class Viaje {
     private String origen;

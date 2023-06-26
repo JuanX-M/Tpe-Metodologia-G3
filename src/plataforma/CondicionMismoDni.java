@@ -1,3 +1,5 @@
+package plataforma;
+
 public class CondicionMismoDni extends Condicion {
     private int dni;
     public CondicionMismoDni(int dni){

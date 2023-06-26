@@ -1,3 +1,5 @@
+package plataforma;
+
 public class FiltroCosto extends Filtro {
 
     private double piso;
