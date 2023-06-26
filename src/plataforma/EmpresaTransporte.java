@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class EmpresaTransporte {
     private ArrayList<Omnibus> omnibus = new ArrayList<Omnibus>();
     //private RegistroCompras reservas;
-    private String nombre;
+    private String nombre = "";
 
     public EmpresaTransporte(String nombre) {
         this.nombre = nombre; 
@@ -49,9 +49,7 @@ public class EmpresaTransporte {
     
     
     public ArrayList<Omnibus> getOmnibus() {
-    	ArrayList<Omnibus> copia = new ArrayList<Omnibus>();
-    	copia.addAll(this.omnibus);
-        return copia;
+        return new ArrayList<Omnibus>(this.omnibus);
     }
 
     public String getNombre() {

@@ -37,6 +37,7 @@ public class Omnibus {
         }
         return viajes;    
     }
+    
     public ArrayList<Asiento> getAsientos(){
         ArrayList<Asiento> copia=new ArrayList<Asiento>();
         copia.addAll(this.asientos);
@@ -44,8 +45,16 @@ public class Omnibus {
     }
 
     public void agregarItinerario(Viaje viaje){
+    	viaje.setOmnibus(this);
         this.itinerario.add(viaje);
     }
+    
+    public void eliminarViaje(Viaje viaje)
+    {
+    	boolean borrado = this.itinerario.remove(viaje);
+    	assert borrado;
+    }
+    
     public void agregarAsiento(Asiento asiento){
         this.asientos.add(asiento);
     }

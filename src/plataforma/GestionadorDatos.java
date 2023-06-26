@@ -28,7 +28,7 @@ public class GestionadorDatos {
             while ((linea = lector.readLine()) != null) {
                 // Dividir la línea utilizando la coma como separador
                 String[] datos = linea.split(",");
-
+                
                 String origen = datos[0];
                 String destino = datos[1];
                 String nombreEmpresa = datos[2];
@@ -37,8 +37,12 @@ public class GestionadorDatos {
                 LocalDate fecha = LocalDate.parse(datos[5]);
                 LocalTime horaSalida = LocalTime.parse(datos[6]);
                 LocalTime horaLlegada = LocalTime.parse(datos[7]);
-                String[] intermedios = datos[8].split(";");
-
+                String[] intermedios = new String[0];
+                if (datos.length > 8)
+                {
+                	intermedios = datos[8].split(";");	
+                }
+                
                 if (!mapa.containsKey(nombreEmpresa))
                     mapa.put(nombreEmpresa, new EmpresaTransporte(nombreEmpresa));
 
@@ -53,7 +57,7 @@ public class GestionadorDatos {
                 for (String recorrido : intermedios)
                     viaje.addRecorridoIntermedio(recorrido);
 
-                System.out.println(viaje);
+                //System.out.println(viaje);
                 omnibus.agregarItinerario(viaje);
             }
         } catch (IOException e) {

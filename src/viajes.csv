@@ -1,2 +1,2 @@
-origen, destino, nomEmpresa, codOmnibus, precio, fecha, horaSalida, horaLlegada, intermedios
-Bariloche,Buenos Aires,Transporte Argentino,1,9000,2023-06-01,14:00,15:00,Necochea;Tandil
+Origen,Destino,Nombre Empresa,Cod Omnibus,Precio,Fecha,Hora Salida,Hora Llegada,Intermedios
+Mar del Tuyú,Claromeco,El Calamar,1,2700.0,2023-06-26,20:00,14:00,Tandil, La Quiaca, Bariloche, Rawson

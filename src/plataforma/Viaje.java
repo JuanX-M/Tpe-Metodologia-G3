@@ -11,25 +11,47 @@ public class Viaje {
     private Omnibus omnibus;
     private LocalTime horaLlegada;
     private LocalTime horaSalida;
-    private ArrayList<String> recorridosIntermedios;
+    private ArrayList<String> recorridosIntermedios = new ArrayList<String>();;
+
+    private int id;
+    private static int contador = 0;
     
     public Viaje(String origen, 
     		String destino, LocalDate fecha, 
-    		double precio, Omnibus om, LocalTime llegada, LocalTime salida) {
+    		double precio, LocalTime llegada, LocalTime salida) {
         this.origen = origen;
         this.destino = destino;
         this.fecha = fecha;
         this.precio = precio;
-        this.omnibus = om;
+        this.id = contador;
+        contador++;
         this.horaLlegada = llegada;
         this.horaSalida = salida;
-        recorridosIntermedios= new ArrayList<String>();
     }
     
     
+    public Viaje(String origen, 
+    		String destino, LocalDate fecha, 
+    		double precio, Omnibus om, LocalTime llegada, LocalTime salida) {
+        this(origen, destino, fecha, precio, llegada, salida);
+        this.omnibus = om;
+    }
     
     
-    @Override
+    public int getId()
+    {
+    	return this.id;
+    }
+    
+	@Override
+	public boolean equals(Object obj) {
+		Viaje otroViaje = (Viaje) obj;
+		return this.getId() == otroViaje.getId();
+	}
+
+
+	
+	@Override
 	public String toString() {
 		return "Empresa: " + omnibus.getNombreEmpresa() + " | hora de llegada: " + horaLlegada + " | hora de salida: " + horaSalida
                       + "| recorridos intermedios: " + this.imprimirRecorridosIntermedios();
