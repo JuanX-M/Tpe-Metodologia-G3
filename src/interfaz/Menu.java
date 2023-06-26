@@ -1,24 +1,27 @@
 package interfaz;
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import plataforma.UsuarioApp;
 
 public class Menu extends JPanel {
     private JButton btnBuscarViaje;
     private JButton btnSalir;
     private Vista vista;
+    private UsuarioApp app;
     
-    public Menu(Vista vista) {
+    public Menu(Vista vista, UsuarioApp app) {
     	this.vista = vista;
+    	this.app = app;
     	
         setLayout(new GridBagLayout());
         setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -50,6 +53,13 @@ public class Menu extends JPanel {
 
 
         btnSalir = new JButton("Salir");
+        btnSalir.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	app.deslogear();
+                vista.mostrar(Vista.INICIO_SESION);
+                
+            }
+        });
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 2;

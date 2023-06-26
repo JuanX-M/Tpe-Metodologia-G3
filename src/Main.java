@@ -25,8 +25,10 @@ public class Main {
 		
 		// Cargamos un admin para testear
 		try {
-			Usuario test = new Administrador("Juan","Pino", 1,"jorge@gmail.com","Pasaporte55");
-			app.registrarUsuario(test);	
+			Usuario admin = new Administrador("Juan","Pino", 1,"jorge@gmail.com","Pasaporte55");
+			Usuario test = new Usuario("John","Doe", 99,"lol","VIHPositivo9");
+			app.registrarUsuario(admin);
+			app.registrarUsuario(test);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

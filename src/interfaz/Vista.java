@@ -4,8 +4,6 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
-import plataforma.Administrador;
-import plataforma.Usuario;
 import plataforma.UsuarioApp;
 
 public class Vista extends JPanel {
@@ -33,8 +31,8 @@ public class Vista extends JPanel {
        
         Registro registroPanel = new Registro(app, this);
         InicioSesion inicioSesion = new InicioSesion(app, this);
-        Menu menuPanel = new Menu(this);
-        MenuAdmin menuAdmin = new MenuAdmin(this, app.getPlataforma());
+        Menu menuPanel = new Menu(this, app);
+        MenuAdmin menuAdmin = new MenuAdmin(this, app);
         BuscarViaje buscarViaje = new BuscarViaje(app, this);
         
         

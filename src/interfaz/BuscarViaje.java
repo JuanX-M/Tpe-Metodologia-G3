@@ -69,14 +69,28 @@ public class BuscarViaje extends JPanel {
             }
         });
         
+        
+        JButton btnAtras = new JButton("Atras");
+        btnAtras.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                vista.mostrar(Vista.MENU);
+            }
+        });
+        
+        
+        
         filtrado = new Filtrado(app);
         add(filtrado, BorderLayout.EAST);
         
         
         buttonPanel.add(buscarButton);
         buttonPanel.add(btnFiltrar);
+        buttonPanel.add(btnAtras);
         add(buttonPanel, BorderLayout.SOUTH);
 
+        
+        
         // Viaje table
         viajesTabla = new ViajesTabla(new ArrayList<>());
         JScrollPane scrollPane = new JScrollPane(viajesTabla);

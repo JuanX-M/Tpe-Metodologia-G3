@@ -30,6 +30,7 @@ import plataforma.AdminApp;
 import plataforma.EmpresaTransporte;
 import plataforma.Omnibus;
 import plataforma.Plataforma;
+import plataforma.UsuarioApp;
 import plataforma.Viaje;
 
 
@@ -40,6 +41,7 @@ public class MenuAdmin extends JPanel {
     private JButton btnEliminar;
     private JButton btnSalir;
     private Vista vista;
+    private UsuarioApp usuarioApp;
     private Plataforma p;
     private ViajesTabla tabla;
     private AdminApp app;
@@ -47,10 +49,12 @@ public class MenuAdmin extends JPanel {
     private JSpinner horaSalidaSpinner;
     private JSpinner horaLlegadaSpinner;
 
-    public MenuAdmin(Vista vista, Plataforma p) {
+    
+    public MenuAdmin(Vista vista, UsuarioApp app) {
         this.vista = vista;
-        this.p = p;
-        this.app = new AdminApp(p);
+        this.usuarioApp = app;
+        this.p = usuarioApp.getPlataforma();
+        this.app = new AdminApp(this.p);
 
         setLayout(new BorderLayout());
         setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -218,6 +222,7 @@ public class MenuAdmin extends JPanel {
 
 
     private void salir() {
+    	usuarioApp.deslogear();
     	vista.mostrar(Vista.INICIO_SESION);
     }
 }

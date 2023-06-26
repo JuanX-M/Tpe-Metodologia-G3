@@ -33,7 +33,7 @@ public class InicioSesion extends JPanel {
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        JLabel etiquetaUsuario = new JLabel("Usuario:");
+        JLabel etiquetaUsuario = new JLabel("DNI:");
         etiquetaUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -81,7 +81,7 @@ public class InicioSesion extends JPanel {
      * Realiza la acción de iniciar sesión.
      */
     private void iniciarSesion() {
-        int dni = 1;
+        int dni = Integer.parseInt(campoUsuario.getText());
         String clave = String.valueOf(campoClave.getPassword());
         app.iniciarSesion(dni, clave);
         if (app.estaLogeado()) {
