@@ -1,4 +1,5 @@
 package plataforma;
+
 import java.time.LocalDate;
 
 public class TarjetaDeCredito {
@@ -10,27 +11,32 @@ public class TarjetaDeCredito {
     private String banco;
     private String marca;
 
-    
     public TarjetaDeCredito(String titular, long numero, LocalDate fechaVencimiento, int cvv,
-			 String banco, String marca) {
-		super();
-		this.titular = titular;
-		this.numero = numero;
-		this.fechaVencimiento = fechaVencimiento;
-		this.cvv = cvv;
-		this.saldo = saldo;
-		this.banco = banco;
-		this.marca = marca;
-	}
+                            String banco, String marca) {
+        if (!validarNumero(numero)) {
+            throw new IllegalArgumentException("El número de tarjeta debe tener 16 dígitos");
+        }
 
-	public String getTitular() {
+        if (!validarFechaVencimiento(fechaVencimiento)) {
+            throw new IllegalArgumentException("La fecha de vencimiento no puede ser anterior a la fecha actual");
+        }
+
+        this.titular = titular;
+        this.numero = numero;
+        this.fechaVencimiento = fechaVencimiento;
+        this.cvv = cvv;
+        //this.saldo = saldo;
+        this.banco = banco;
+        this.marca = marca;
+    }
+
+    public String getTitular() {
         return titular;
     }
 
     public long getNumero() {
         return numero;
     }
-
 
     public LocalDate getFechaVencimiento() {
         return fechaVencimiento;
@@ -57,10 +63,16 @@ public class TarjetaDeCredito {
     }
 
     public void setNumero(long numero) {
+        if (!validarNumero(numero)) {
+            throw new IllegalArgumentException("El número de tarjeta debe tener 16 dígitos");
+        }
         this.numero = numero;
     }
 
     public void setFechaVencimiento(LocalDate fechaVencimiento) {
+        if (!validarFechaVencimiento(fechaVencimiento)) {
+            throw new IllegalArgumentException("La fecha de vencimiento no puede ser anterior a la fecha actual");
+        }
         this.fechaVencimiento = fechaVencimiento;
     }
 
@@ -78,5 +90,15 @@ public class TarjetaDeCredito {
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    private boolean validarNumero(long numero) {
+        String numeroStr = String.valueOf(numero);
+        return numeroStr.length() == 16;
+    }
+
+    private boolean validarFechaVencimiento(LocalDate fechaVencimiento) {
+        LocalDate fechaActual = LocalDate.now();
+        return !fechaVencimiento.isBefore(fechaActual);
     }
 }
