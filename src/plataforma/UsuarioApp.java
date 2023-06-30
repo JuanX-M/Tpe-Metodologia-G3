@@ -5,13 +5,11 @@ import java.util.ArrayList;
 
 public class UsuarioApp {
     private RegistroUsuario userRegistro;
-    //private Plataforma plataforma;
     private boolean logged;
     private Plataforma p;
     public UsuarioApp(Plataforma p){
     	this.p = p;
         this.userRegistro=new RegistroUsuario();
-        //this.plataforma= new Plataforma();
         this.logged=false;
     }
 
@@ -80,5 +78,19 @@ public class UsuarioApp {
         }
         return res;
     }
+    
+    public ArrayList<Asiento> getAsientosLibres(Viaje v) {
+    	return v.asientosLibres();
+    }
+    public Compra seleccionar(Usuario u, Asiento a, Viaje v) { //mirar
+    	return new Compra(a.getNumero(),v,u);
+    }
+    
+    public void confirmarCompra(String nombreEmpresa, Compra c) {
+    	EmpresaTransporte e = p.buscarEmpresa(nombreEmpresa);
+    	e.agregarReserva(c);
+    	// aca tmb iria lo de mandar mail
+    }
+    
 
 }

@@ -25,7 +25,7 @@ public class BuscarViaje extends JPanel {
     
     
     public BuscarViaje(UsuarioApp app, Vista vista) {
-        this.app = app;
+        this.app= app;
         this.vista = vista;
         this.inicializar();
     }

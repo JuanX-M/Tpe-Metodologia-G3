@@ -16,6 +16,8 @@ public class Viaje {
     private int id;
     private static int contador = 0;
     
+    private ArrayList<Asiento> asientos;
+    
     public Viaje(String origen, 
     		String destino, LocalDate fecha, 
     		double precio, LocalTime llegada, LocalTime salida) {
@@ -35,6 +37,7 @@ public class Viaje {
     		double precio, Omnibus om, LocalTime llegada, LocalTime salida) {
         this(origen, destino, fecha, precio, llegada, salida);
         this.omnibus = om;
+        this.asientos = omnibus.getAsientos();
     }
     
     
@@ -110,5 +113,23 @@ public class Viaje {
     public void setOmnibus(Omnibus omnibus) {
         this.omnibus = omnibus;
     }
+    
+    public ArrayList<Asiento> asientosLibres(){
+    	ArrayList<Asiento> res = new ArrayList<Asiento>();
+    	for (int i = 0; i<asientos.size();i++) {
+    		if (!asientos.get(i).isReservado())
+    			res.add(asientos.get(i));
+    	}
+    	return res;
+    }
+    
+    public void reservarAsiento(int nroAsiento) {
+    	for (int i = 0; i< asientos.size();i++) {
+    		if (asientos.get(i).getNumero() == nroAsiento)
+    			asientos.get(i).setReservado(true);
+    	}
+    }
+    
+    
 
 }
