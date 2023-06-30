@@ -5,24 +5,24 @@ import java.util.ArrayList;
 public class Compra {
 
 	private ArrayList<Asiento> asientos;
-	private ArrayList<Integer> dnis;
+	private ArrayList<Usuario> ocupantes;
 	private Viaje v;
 	private Usuario pasajero;
 
 
 	public Compra(Viaje v, Usuario pasajero) {
 		this.asientos= new ArrayList<Asiento>();
-		this.dnis= new ArrayList<Integer>();
+		this.ocupantes = new ArrayList<Usuario>();
 		this.v = v;
 		this.pasajero = pasajero;
 	}
 
-	public void addDNI(int dni){
-		this.dnis.add(dni);
+	public void addOcupante(Usuario uu){
+		this.ocupantes.add(uu);
 	}
 
-	public ArrayList<Integer> getDnis(){
-		return new ArrayList<Integer>(dnis);
+	public ArrayList<Usuario> getOcupantes(){
+		return new ArrayList<Usuario>(ocupantes);
 	}
 
 	public void addAsiento(Asiento a){
@@ -48,9 +48,11 @@ public class Compra {
 	}
 
 	public void imprimir(){
+		ArrayList<Usuario> aux = new ArrayList<>(ocupantes);
+		aux.add(this.pasajero);
 		System.out.println("Detalles Pasajeros: ");
-		for (int i = 0; i < this.dnis.size() ; i++) {
-			System.out.println(asientos.get(i) + "|"+);
+		for (int i = 0; i < this.ocupantes.size() ; i++) {
+			System.out.println(asientos.get(i) + "|"+ aux.get(i));
 		}
 	}
 

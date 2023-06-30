@@ -124,8 +124,14 @@ public class UsuarioApp {
 
                     this.userRegistro.agregarUsuario(u);
 
+                    compra.addOcupante(nuevo);
                 }
-                compra.addDNI(dni);
+                else{
+                    Condicion cond = new CondicionMismoDni(dni);
+                    ArrayList<Usuario> arreglo = userRegistro.buscarUsuarioPorCondicion(cond);
+                    compra.addOcupante(arreglo.get(0));
+                }
+
             }
 
         }
@@ -157,16 +163,23 @@ public class UsuarioApp {
     public void confirmarCompra(String nombreEmpresa, Compra c) {
         //imprimimos por pantalla
         System.out.println("Viaje: "+ c.getViaje());
-
         c.imprimir();
-
-        EmpresaTransporte e = p.buscarEmpresa(nombreEmpresa);
-        e.agregarReserva(c);
-
-        // se descuenta el precio del viaje al usuario
-        c.getPasajero().getMetodoPago().setSaldo(c.getPasajero().getMetodoPago().getSaldo()-c.getViaje().getPrecio());
-        // aca tmb iria lo de mandar mail
-
+        System.out.println(c.getPasajero().getMetodoPago());
+        System.out.println("Desea confirmar la compra? Y/N");
+        Scanner ss = new Scanner(System.in);
+        String aux = ss.nextLine();
+        if(aux.equals("Y")){
+            // se descuenta el precio del viaje al usuario
+            if(c.getPasajero().getMetodoPago().getSaldo() <= c.getViaje().getPrecio()) {
+                c.getPasajero().getMetodoPago().setSaldo(c.getPasajero().getMetodoPago().getSaldo() - c.getViaje().getPrecio());
+                EmpresaTransporte e = p.buscarEmpresa(nombreEmpresa);
+                e.agregarReserva(c);
+                System.out.println("transaccion realizada, pasajes enviado por mail");
+            }
+            else {
+                System.out.println("no se pudo confirmar la compra: saldo insuficiente");
+            }
+        }
     }
     
 

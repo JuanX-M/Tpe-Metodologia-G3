@@ -101,4 +101,10 @@ public class TarjetaDeCredito {
         LocalDate fechaActual = LocalDate.now();
         return !fechaVencimiento.isBefore(fechaActual);
     }
+
+    @Override
+    public String toString() {
+        String aux = ("Titular: "+ titular + "Numero: "+ numero+ "FechaVencimiento:" + fechaVencimiento + "Saldo:" + saldo+"Banco: "+banco+"Marca: "+marca);
+        return aux;
+    }
 }
