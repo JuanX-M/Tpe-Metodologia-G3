@@ -25,7 +25,9 @@ public class Usuario {
 		this.clave = clave;
     }
     
-    
+    public boolean tieneTarjeta(){
+        return metodoPago!= null;
+    }
     
     public String toString()
     {
@@ -64,8 +66,11 @@ public class Usuario {
     	return this.getDNI() == (otroUsuario.getDNI()) 
     			&& this.getClave().equals(otroUsuario.getClave());
     }
-    
-    
+
+    public TarjetaDeCredito getMetodoPago() {
+        return metodoPago;
+    }
+
     public void asociarTarjeta(TarjetaDeCredito t)
     {
     	metodoPago = t;
