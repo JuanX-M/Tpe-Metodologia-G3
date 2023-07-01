@@ -39,14 +39,6 @@ public class Compra {
 		return v;
 	}
 
-	@Override
-	public String toString() {
-		for (int i = 0; i < ; i++) {
-			return
-		}
-		return super.toString();
-	}
-
 	public void imprimir(){
 		ArrayList<Usuario> aux = new ArrayList<>(ocupantes);
 		aux.add(this.pasajero);

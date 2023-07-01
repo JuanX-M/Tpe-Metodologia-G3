@@ -82,8 +82,7 @@ public class UsuarioApp {
     public ArrayList<Asiento> getAsientosLibres(Viaje v) {
         return v.asientosLibres();
     }
-    public Compra seleccionar(Usuario u,ArrayList <Asiento> a, Viaje v) { //mirar
-        ArrayList<int> dnis= new ArrayList<int>();
+    public Compra seleccionar(Usuario u,ArrayList <Asiento> a, Viaje v) {
         Compra compra= new Compra(v,u);
         //imprimimos asientos libres
         ArrayList<Asiento> libres=this.getAsientosLibres(v);
@@ -98,21 +97,26 @@ public class UsuarioApp {
         while (seguir.equals("Y") ){
             System.out.println("Ingrese Nro: ");
             int sellecionado=0;
-
             sellecionado= cc.nextInt();
-
             compra.addAsiento(libres.get(sellecionado));
             libres.get(sellecionado).setReservado(true);
             System.out.println("Desea seleccionar otro asiento Y/N: ");
             seguir= cc.nextLine();
         }
 
-        if (compra.getAsientos().size()>1) {
+        if (compra.getAsientos().size()>1) {//si selecciono mas de un asiento, debe ingresar los datos del ocupante
             for (int i=1; i<= compra.getAsientos().size();i++) {
                 System.out.println("Ingrese Nro DNI del ocupante: ");
                 int dni=cc.nextInt();
                 if (!this.verificarExisteDNI(dni)){
-                    Usuario nuevo = new Usuario("",0,dni,"","");
+                    Usuario nuevo = null;
+
+                    try {//esto se agrego para evitar un error
+                        nuevo = new Usuario("","",dni,"","");
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+
                     System.out.println("Ingrese nombre: ");
                     nuevo.setNombre(cc.nextLine());
 
@@ -122,7 +126,11 @@ public class UsuarioApp {
                     System.out.println("Ingrese mail: ");
                     nuevo.setMail( cc.nextLine());
 
-                    this.userRegistro.agregarUsuario(u);
+                    try {//esto se agrego para evitar un error
+                        this.userRegistro.agregarUsuario(u);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
 
                     compra.addOcupante(nuevo);
                 }
@@ -131,13 +139,9 @@ public class UsuarioApp {
                     ArrayList<Usuario> arreglo = userRegistro.buscarUsuarioPorCondicion(cond);
                     compra.addOcupante(arreglo.get(0));
                 }
-
             }
-
         }
-
         if (!u.tieneTarjeta()){
-
             TarjetaDeCredito t= new TarjetaDeCredito(u.getNombre(),0,null,0,"","");
 
             System.out.println("Ingrese Nro Tarjeta: ");
@@ -181,6 +185,4 @@ public class UsuarioApp {
             }
         }
     }
-    
-
 }
