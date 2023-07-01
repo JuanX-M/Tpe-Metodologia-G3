@@ -14,7 +14,8 @@ public class Vista extends JPanel {
 	public static final String MENU_ADMIN = "MENU_ADMIN";
 	public static final String BUSCAR_VIAJE = "BUSCAR_VIAJE";
 	public static final String ASOCIAR_TARJETA = "ASOCIAR_TARJETA";
-	
+	public static final String SELECCIONAR_ASIENTO = "SELECCIONAR_ASIENTO";
+		
     private JPanel inicioPanel;
     private CardLayout cardLayout;
     private UsuarioApp app;
@@ -34,6 +35,8 @@ public class Vista extends JPanel {
         Menu menuPanel = new Menu(this, app);
         MenuAdmin menuAdmin = new MenuAdmin(this, app);
         BuscarViaje buscarViaje = new BuscarViaje(app, this);
+        //SeleccionarAsiento seleccionar = new SeleccionarAsiento();
+        
         
         
         inicioPanel.add(inicioSesion, INICIO_SESION);
@@ -41,12 +44,19 @@ public class Vista extends JPanel {
         inicioPanel.add(menuPanel, MENU);
         inicioPanel.add(menuAdmin, MENU_ADMIN);
         inicioPanel.add(buscarViaje, BUSCAR_VIAJE);
+        //inicioPanel.add(seleccionar, SELECCIONAR_ASIENTO);
         
         add(inicioPanel, BorderLayout.CENTER);
     }
 
     public void mostrar(String PANEL_NAME) {
         cardLayout.show(inicioPanel, PANEL_NAME);
+    }
+
+    
+    
+    public void actualizarPanel(JPanel panel, String PANEL_NAME) {
+        inicioPanel.add(panel, PANEL_NAME);
     }
     
 }

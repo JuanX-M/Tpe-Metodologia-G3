@@ -53,6 +53,9 @@ public class BuscarViaje extends JPanel {
 
         // Button panel
         JPanel buttonPanel = new JPanel();
+        
+        
+        
         JButton buscarButton = new JButton("Buscar");
         buscarButton.addActionListener(new ActionListener() {
             @Override
@@ -60,6 +63,17 @@ public class BuscarViaje extends JPanel {
                 buscarViaje();
             }
         });
+        
+
+        JButton btnSeleccionar = new JButton("Seleccionar");
+        btnSeleccionar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                seleccionarAsiento();
+            }
+        });
+        
+        
         
         JButton btnFiltrar = new JButton("Filtrar");
         btnFiltrar.addActionListener(new ActionListener() {
@@ -83,9 +97,9 @@ public class BuscarViaje extends JPanel {
         filtrado = new Filtrado(app);
         add(filtrado, BorderLayout.EAST);
         
-        
         buttonPanel.add(buscarButton);
         buttonPanel.add(btnFiltrar);
+        buttonPanel.add(btnSeleccionar);
         buttonPanel.add(btnAtras);
         add(buttonPanel, BorderLayout.SOUTH);
 
@@ -97,6 +111,21 @@ public class BuscarViaje extends JPanel {
         add(scrollPane, BorderLayout.CENTER);
     }
 
+    
+    private void seleccionarAsiento()
+    {
+    	int filaSeleccionada = viajesTabla.getSelectedRow();
+    	if (filaSeleccionada == -1)
+    	{
+    		JOptionPane.showMessageDialog(BuscarViaje.this, "No se ha seleccionado un viaje");
+    		return;	
+    	}
+		Viaje viaje = viajesTabla.getViaje(filaSeleccionada);
+		vista.actualizarPanel(new SeleccionarAsiento(viaje), Vista.SELECCIONAR_ASIENTO);
+		vista.mostrar(Vista.SELECCIONAR_ASIENTO);
+    }
+    
+    
     
     private void buscarViaje() {
     	try {

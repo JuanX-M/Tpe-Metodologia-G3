@@ -19,6 +19,8 @@ public class Menu extends JPanel {
     private Vista vista;
     private UsuarioApp app;
     
+    
+    
     public Menu(Vista vista, UsuarioApp app) {
     	this.vista = vista;
     	this.app = app;
