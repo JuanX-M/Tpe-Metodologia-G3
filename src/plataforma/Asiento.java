@@ -22,4 +22,16 @@ public class Asiento {
     public void setReservado(boolean reservado) {
         this.reservado = reservado;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Asiento a= (Asiento)obj;
+
+        return a.getNumero() == this.numero;
+    }
+
+    @Override
+    public String toString() {
+        return "NroAsiento: "+this.numero;
+    }
 }

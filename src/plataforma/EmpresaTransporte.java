@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class EmpresaTransporte {
     private ArrayList<Omnibus> omnibus = new ArrayList<Omnibus>();
-    //private RegistroCompras reservas;
+    private ArrayList<Compra> reservas;
     private String nombre = "";
 
     public EmpresaTransporte(String nombre) {
         this.nombre = nombre; 
-        //this.reservas = new RegistroCompras();
+        this.reservas = new ArrayList<Compra>();
     }
     
     public boolean equals(Object o)
@@ -59,4 +59,12 @@ public class EmpresaTransporte {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    public void agregarReserva(Compra c) {
+    	reservas.add(c);
+        for(Asiento aa : c.getAsientos()){
+            c.getViaje().reservarAsiento(aa.getNumero());
+        }
+    }
+    
 }
