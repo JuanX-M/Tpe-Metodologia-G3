@@ -19,26 +19,23 @@ public class Registro extends JPanel {
     private JPasswordField campoClave;
     private UsuarioApp app;
     private Vista vista;
+    private boolean darOpcionAsociarTarjeta;
     
-    
-    
-    /**
-     * Crea el panel de registro.
-     * @param app La instancia de UsuarioApp para registrar al usuario.
-     * @param cardLayout El CardLayout para administrar los componentes.
-     * @param cardPanel El panel contenedor de los componentes.
-     */
+   
     public Registro(UsuarioApp app, Vista vista) {
         this.app = app;
         this.vista = vista;
-        
+        this.darOpcionAsociarTarjeta = true;
         
         initialize();
     }
 
-    /**
-     * Inicializa el contenido del panel.
-     */
+    public void setDarOpcionAsociarTarjeta(boolean opcion)
+    {
+    	this.darOpcionAsociarTarjeta = opcion;
+    }
+    
+
     private void initialize() {
         setLayout(new GridLayout(7, 2));
 
@@ -74,13 +71,13 @@ public class Registro extends JPanel {
 
                     Usuario u = new Usuario(nombre, apellido, dni, mail, clave);
                     app.registrarUsuario(u);
-
+                    
                     int op = JOptionPane.showConfirmDialog(Registro.this, "¿Desea asociar una tarjeta?", "Asociar Tarjeta", JOptionPane.YES_NO_OPTION);
                     if (op == JOptionPane.YES_OPTION) {
-                        AsociarTarjeta asociarTarjetaPanel = new AsociarTarjeta(app, u);
-                        //cardPanel.add(asociarTarjetaPanel, "asociarTarjeta");
-                        //cardLayout.show(cardPanel, "asociarTarjeta");
-                    }
+                            AsociarTarjeta asociarTarjetaPanel = new AsociarTarjeta(app, u);
+                            vista.actualizarPanel(asociarTarjetaPanel, Vista.ASOCIAR_TARJETA);
+                            vista.mostrar(Vista.ASOCIAR_TARJETA);
+                    }	
                     JOptionPane.showMessageDialog(Registro.this, "Registro exitoso");
                     botonVolver.doClick();
                     clearFields();

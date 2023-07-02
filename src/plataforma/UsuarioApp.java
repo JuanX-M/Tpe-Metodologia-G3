@@ -2,16 +2,18 @@ package plataforma;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UsuarioApp {
     private RegistroUsuario userRegistro;
     private boolean logged;
+    private Usuario usuarioLogeado;    
     private Plataforma p;
+    
+    
     public UsuarioApp(Plataforma p){
         this.p = p;
-        this.userRegistro=new RegistroUsuario();
-        this.logged=false;
+        this.userRegistro = new RegistroUsuario();
+        this.logged = false;
     }
 
     
@@ -31,19 +33,29 @@ public class UsuarioApp {
             // hacemos el get(0) ya que deberia de ser un único usuario el que cumple la condicion
             boolean coincide = usuarioRegistrado.coincide(clave);
             if (coincide)
-                this.logged = true;
+            {
+            	this.logged = true;
+            	this.usuarioLogeado = usuarioRegistrado;
+            }
             return coincide;
         }
         return true;
     }
 
     
+    public Usuario getUsuarioLogeado()
+    {
+    	return this.usuarioLogeado;
+    }
+    
+    
+    
     public boolean estaLogeado()
     {
         return this.logged;
     }
     
-    public void registrarUsuario(Usuario u) throws Exception{
+    public void registrarUsuario(Usuario u) throws Exception {
         userRegistro.agregarUsuario(u);
     }
 
@@ -82,8 +94,11 @@ public class UsuarioApp {
     public ArrayList<Asiento> getAsientosLibres(Viaje v) {
         return v.asientosLibres();
     }
-    public Compra seleccionar(Usuario u,ArrayList <Asiento> a, Viaje v) { //mirar
-        ArrayList<int> dnis= new ArrayList<int>();
+    
+    
+    /*
+    public Compra seleccionar(Usuario u, ArrayList <Asiento> a, Viaje v) { //mirar
+    	ArrayList<int> dnis= new ArrayList<int>();
         Compra compra= new Compra(v,u);
         //imprimimos asientos libres
         ArrayList<Asiento> libres=this.getAsientosLibres(v);
@@ -158,11 +173,13 @@ public class UsuarioApp {
             u.asociarTarjeta(t);
         }
         return compra;
+    	
     }
+    */
     
     public void confirmarCompra(String nombreEmpresa, Compra c) {
         //imprimimos por pantalla
-        System.out.println("Viaje: "+ c.getViaje());
+        /*System.out.println("Viaje: "+ c.getViaje());
         c.imprimir();
         System.out.println(c.getPasajero().getMetodoPago());
         System.out.println("Desea confirmar la compra? Y/N");
@@ -180,6 +197,7 @@ public class UsuarioApp {
                 System.out.println("no se pudo confirmar la compra: saldo insuficiente");
             }
         }
+        */
     }
     
 

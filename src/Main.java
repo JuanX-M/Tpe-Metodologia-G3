@@ -1,20 +1,13 @@
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import javax.swing.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import interfaz.Vista;
 import plataforma.Administrador;
-import plataforma.EmpresaTransporte;
-import plataforma.Omnibus;
 import plataforma.Plataforma;
 import plataforma.Usuario;
 import plataforma.UsuarioApp;
-import plataforma.Viaje;
 
 
-
-// TODO: refactorizar lógica del menú en una clase
 
 public class Main {
 

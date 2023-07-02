@@ -60,10 +60,10 @@ public class EmpresaTransporte {
         this.nombre = nombre;
     }
     
-    public void agregarReserva(Compra c) {
+    public void agregarReserva(Compra c, Usuario pasajero) {
     	reservas.add(c);
         for(Asiento aa : c.getAsientos()){
-            c.getViaje().reservarAsiento(aa.getNumero());
+            c.getViaje().reservarAsiento(aa.getNumero(), pasajero);
         }
     }
     

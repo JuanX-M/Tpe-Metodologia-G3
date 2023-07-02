@@ -37,7 +37,9 @@ public class Viaje {
     		double precio, Omnibus om, LocalTime llegada, LocalTime salida) {
         this(origen, destino, fecha, precio, llegada, salida);
         this.omnibus = om;
-        this.asientos = omnibus.getAsientos();
+        this.asientos  = new ArrayList<Asiento>();
+        for (int i = 1; i <= omnibus.getLimiteAsientos(); i++)
+        	asientos.add(new Asiento());
     }
     
     
@@ -114,6 +116,12 @@ public class Viaje {
         this.omnibus = omnibus;
     }
     
+    
+    public ArrayList<Asiento> getAsientos()
+    {
+    	return new ArrayList<Asiento>(this.asientos);
+    }
+    
     public ArrayList<Asiento> asientosLibres(){
     	ArrayList<Asiento> res = new ArrayList<Asiento>();
     	for (int i = 0; i<asientos.size();i++) {
@@ -123,10 +131,10 @@ public class Viaje {
     	return res;
     }
     
-    public void reservarAsiento(int nroAsiento) {
+    public void reservarAsiento(int nroAsiento, Usuario pasajero) {
     	for (int i = 0; i< asientos.size();i++) {
     		if (asientos.get(i).getNumero() == nroAsiento)
-    			asientos.get(i).setReservado(true);
+    			asientos.get(i).reservar(pasajero);
     	}
     }
     

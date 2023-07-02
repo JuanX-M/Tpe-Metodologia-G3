@@ -212,7 +212,7 @@ public class MenuAdmin extends JPanel {
             int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro de eliminar el viaje?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
             if (opcion == JOptionPane.YES_OPTION) {
             	Viaje viaje = this.tabla.getViaje(filaSeleccionada);
-            	System.out.println(viaje);
+            	//System.out.println(viaje);
             	app.baja(viaje);
             	tabla.actualizar(getViajes());
                 JOptionPane.showMessageDialog(this, "Viaje eliminado exitosamente.", "Información", JOptionPane.INFORMATION_MESSAGE);

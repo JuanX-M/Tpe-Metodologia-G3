@@ -121,7 +121,7 @@ public class BuscarViaje extends JPanel {
     		return;	
     	}
 		Viaje viaje = viajesTabla.getViaje(filaSeleccionada);
-		vista.actualizarPanel(new SeleccionarAsiento(viaje), Vista.SELECCIONAR_ASIENTO);
+		vista.actualizarPanel(new SeleccionarAsiento(viaje, this.app, this.vista), Vista.SELECCIONAR_ASIENTO);
 		vista.mostrar(Vista.SELECCIONAR_ASIENTO);
     }
     

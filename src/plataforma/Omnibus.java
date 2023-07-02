@@ -5,8 +5,7 @@ public class Omnibus {
     private EmpresaTransporte empresaDuenia;
     private int numOmnibus;
     private ArrayList<Viaje> itinerario; //los viajes que tiene que hacer el omnibus
-    private int limiteAsientos=50; //mirar
-    private ArrayList<Asiento> asientos;
+    private int limiteAsientos = 30;
 
     public Omnibus(EmpresaTransporte em, int num){
         numOmnibus = num;
@@ -55,16 +54,4 @@ public class Omnibus {
     public int getLimiteAsientos() {
     	return limiteAsientos;
     }
-    
-    public ArrayList<Asiento> getAsientos(){
-        ArrayList<Asiento> copia=new ArrayList<Asiento>();
-        copia.addAll(this.asientos);
-        return copia;
-    }
-    
-    public void agregarAsiento(Asiento asiento){
-    	if (asientos.size() < limiteAsientos)
-    		this.asientos.add(asiento);
-    }
-    
 }

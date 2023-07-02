@@ -1,7 +1,10 @@
 package plataforma;
+
+
 public class Asiento {
     private int numero;
     private boolean reservado;
+    private Usuario pasajero;
     private static int contador=0;
 
 
@@ -19,14 +22,14 @@ public class Asiento {
         return reservado;
     }
 
-    public void setReservado(boolean reservado) {
-        this.reservado = reservado;
+    public void reservar(Usuario u) {
+        this.reservado = true;
+        this.pasajero = u;
     }
 
     @Override
     public boolean equals(Object obj) {
-        Asiento a= (Asiento)obj;
-
+        Asiento a = (Asiento) obj;
         return a.getNumero() == this.numero;
     }
 

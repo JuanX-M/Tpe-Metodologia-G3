@@ -69,21 +69,26 @@ public class AsociarTarjeta extends JPanel {
         JButton botonAsociar = new JButton("Asociar tarjeta");
         botonAsociar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                long numero = Long.parseLong(numeroTarjetaField.getText());
-                String titular = titularField.getText();
-                String banco = bancoField.getText();
-                String marca = marcaField.getText();
-                String fechaTexto = fechaField.getText();
-                int codigo = Integer.parseInt(codigoField.getText());
+            	try {
+            		long numero = Long.parseLong(numeroTarjetaField.getText());
+                    String titular = titularField.getText();
+                    String banco = bancoField.getText();
+                    String marca = marcaField.getText();
+                    String fechaTexto = fechaField.getText();
+                    int codigo = Integer.parseInt(codigoField.getText());
 
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-                LocalDate fecha = LocalDate.parse(fechaTexto, formatter);
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                    LocalDate fecha = LocalDate.parse(fechaTexto, formatter);
 
-                TarjetaDeCredito tarjeta = new TarjetaDeCredito(titular, numero, fecha, codigo, banco, marca);
-                app.asociarTarjeta(usuario, tarjeta);
+                    TarjetaDeCredito tarjeta = new TarjetaDeCredito(titular, numero, fecha, codigo, banco, marca);
+                    app.asociarTarjeta(usuario, tarjeta);
 
-                JOptionPane.showMessageDialog(AsociarTarjeta.this, "La tarjeta fue asociada correctamente");
-                limpiarCampos();
+                    JOptionPane.showMessageDialog(AsociarTarjeta.this, "La tarjeta fue asociada correctamente");
+                    limpiarCampos();
+	
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(AsociarTarjeta.this, "Ocurrió el siguiente error al asociar su tarjeta" + e2);
+				}
             }
         });
 

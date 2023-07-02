@@ -11,24 +11,42 @@ public class Usuario {
     private String clave;
     private TarjetaDeCredito metodoPago;
     private double creditos;
-    //private ArrayList<Compra> compras;
+    private ArrayList<Compra> compras;
+    private boolean registroParcial;
+    
 
-
-    public Usuario(String nombre, String apellido, int dNI, String mail, String clave) throws Exception {
-		super();
+    public Usuario(int dni, String nombre, String apellido) {
 		this.nombre = nombre;
 		this.apellido = apellido;
-		DNI = dNI;
+		this.DNI = dni;
+		this.registroParcial = true;
+	}
+    
+    
+    public Usuario(String nombre, String apellido, int dNI, String mail, String clave) throws Exception {
+		this(dNI, nombre, apellido);
 		this.mail = mail;
-		
 		this.verificarFormatoClave(clave);
 		this.clave = clave;
+		this.registroParcial = false;
     }
     
-    public boolean tieneTarjeta(){
+    public boolean isRegistroParcial()
+    {
+    	return this.registroParcial;
+    }
+    
+    
+	public boolean tieneTarjeta(){
         return metodoPago!= null;
     }
     
+	public void registrarCompra(Compra c)
+	{
+		compras.add(c);
+	}
+	
+	
     public String toString()
     {
     	return "Usuario " + nombre;

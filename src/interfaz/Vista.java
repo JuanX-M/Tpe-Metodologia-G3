@@ -20,9 +20,7 @@ public class Vista extends JPanel {
     private CardLayout cardLayout;
     private UsuarioApp app;
 
-    /**
-     * Crea el panel de inicio de sesión.
-     */
+    
     public Vista(UsuarioApp app) {
         this.app = app;
         this.cardLayout = new CardLayout();
