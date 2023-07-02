@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class Registro extends JPanel {
+public class Registro extends JPanel implements OnActionListener{
 
     private JTextField campoDNI;
     private JTextField campoNombre;
@@ -19,6 +19,7 @@ public class Registro extends JPanel {
     private JPasswordField campoClave;
     private UsuarioApp app;
     private Vista vista;
+    private JButton botonVolver;
     private boolean darOpcionAsociarTarjeta;
     
    
@@ -51,7 +52,7 @@ public class Registro extends JPanel {
         campoClave = new JPasswordField();
         JButton botonRegistrar = new JButton("Registrar");
 
-        JButton botonVolver = new JButton("Volver");
+        botonVolver = new JButton("Volver");
         botonVolver.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	vista.mostrar(Vista.INICIO_SESION);;
@@ -62,29 +63,7 @@ public class Registro extends JPanel {
         botonRegistrar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    int dni = Integer.parseInt(campoDNI.getText());
-                    String nombre = campoNombre.getText();
-                    String apellido = campoApellido.getText();
-                    String mail = campoMail.getText();
-                    String clave = String.valueOf(campoClave.getPassword());
-
-                    Usuario u = new Usuario(nombre, apellido, dni, mail, clave);
-                    app.registrarUsuario(u);
-                    
-                    int op = JOptionPane.showConfirmDialog(Registro.this, "¿Desea asociar una tarjeta?", "Asociar Tarjeta", JOptionPane.YES_NO_OPTION);
-                    if (op == JOptionPane.YES_OPTION) {
-                            AsociarTarjeta asociarTarjetaPanel = new AsociarTarjeta(app, u);
-                            vista.actualizarPanel(asociarTarjetaPanel, Vista.ASOCIAR_TARJETA);
-                            vista.mostrar(Vista.ASOCIAR_TARJETA);
-                    }	
-                    JOptionPane.showMessageDialog(Registro.this, "Registro exitoso");
-                    botonVolver.doClick();
-                    clearFields();
-                    
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(Registro.this, "Error al registrar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
+            	registrarse();
             }
         });
 
@@ -105,6 +84,37 @@ public class Registro extends JPanel {
         add(botonVolver);
     }
 
+        
+    private void registrarse()
+    {
+        try {
+            int dni = Integer.parseInt(campoDNI.getText());
+            String nombre = campoNombre.getText();
+            String apellido = campoApellido.getText();
+            String mail = campoMail.getText();
+            String clave = String.valueOf(campoClave.getPassword());
+
+            Usuario u = new Usuario(nombre, apellido, dni, mail, clave);
+            app.registrarUsuario(u);
+            
+            int op = JOptionPane.showConfirmDialog(Registro.this, "¿Desea asociar una tarjeta?", "Asociar Tarjeta", JOptionPane.YES_NO_OPTION);
+            if (op == JOptionPane.YES_OPTION) {
+                    AsociarTarjeta asociarTarjetaPanel = new AsociarTarjeta(app, u, this);
+                    //vista.actualizarPanel(asociarTarjetaPanel, Vista.ASOCIAR_TARJETA);
+                    //vista.mostrar(Vista.ASOCIAR_TARJETA);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(Registro.this, "Registro exitoso");
+                botonVolver.doClick();
+                clearFields();
+            }
+            
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(Registro.this, "Error al registrar: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
     private void clearFields() {
         campoDNI.setText("");
         campoNombre.setText("");
@@ -113,6 +123,10 @@ public class Registro extends JPanel {
         campoClave.setText("");
     }
     
-
-
+    public void onAction()
+    {
+        JOptionPane.showMessageDialog(Registro.this, "Registro exitoso");
+        botonVolver.doClick();
+        clearFields();
+    }
 }

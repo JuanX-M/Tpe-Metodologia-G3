@@ -11,7 +11,7 @@ public class Usuario {
     private String clave;
     private TarjetaDeCredito metodoPago;
     private double creditos;
-    private ArrayList<Compra> compras;
+    private ArrayList<Compra> compras = new ArrayList<Compra>();
     private boolean registroParcial;
     
 
@@ -130,10 +130,6 @@ public class Usuario {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
-    }
-
-    public void setDNI(int DNI) {
-        this.DNI = DNI;
     }
 
     public void setMail(String mail) {

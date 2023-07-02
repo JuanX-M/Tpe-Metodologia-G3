@@ -5,14 +5,14 @@ import java.util.ArrayList;
 public class Compra {
 
 	private ArrayList<Asiento> asientos;
-	private ArrayList<Usuario> ocupantes;
+	//private ArrayList<Usuario> ocupantes;
 	private Viaje viaje;
 	private Usuario comprador;
 
 
 	public Compra(Viaje viaje, Usuario comprador) {
-		this.asientos= new ArrayList<Asiento>();
-		this.ocupantes = new ArrayList<Usuario>();
+		this.asientos = new ArrayList<Asiento>();
+		//this.ocupantes = new ArrayList<Usuario>();
 		this.viaje = viaje;
 		this.comprador = comprador;
 	}
@@ -60,5 +60,15 @@ public class Compra {
 
 	public Usuario getComprador() {
 		return this.comprador;
+	}
+
+
+	public double getPrecio() {
+		return this.getCantAsientos() * viaje.getPrecio();
+	}
+
+
+	public void removeAsiento(Asiento asiento) {
+		this.asientos.remove(asiento);
 	}
 }

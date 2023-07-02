@@ -177,7 +177,19 @@ public class UsuarioApp {
     }
     */
     
-    public void confirmarCompra(String nombreEmpresa, Compra c) {
+    public void confirmarCompra(String nombreEmpresa, Compra c) throws Exception {
+    	Usuario comprador = c.getComprador();
+    	TarjetaDeCredito tarjeta = comprador.getMetodoPago();
+    	double saldo = tarjeta.getSaldo();
+    	double precio = c.getPrecio();
+    	if (saldo < precio)
+    		throw new Exception("El saldo es insuficiente");
+
+        tarjeta.setSaldo(saldo - precio);
+        EmpresaTransporte e = p.buscarEmpresa(nombreEmpresa);
+        e.agregarReserva(c, comprador);
+        comprador.registrarCompra(c);
+        
         //imprimimos por pantalla
         /*System.out.println("Viaje: "+ c.getViaje());
         c.imprimir();

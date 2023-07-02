@@ -1,4 +1,5 @@
 package interfaz;
+
 import javax.swing.*;
 
 import plataforma.TarjetaDeCredito;
@@ -11,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class AsociarTarjeta extends JPanel {
+public class AsociarTarjeta extends JFrame {
 
     private JTextField numeroTarjetaField;
     private JTextField titularField;
@@ -21,12 +22,12 @@ public class AsociarTarjeta extends JPanel {
     private JTextField codigoField;
     private UsuarioApp app;
     private Usuario usuario;
-
-    /**
-     * Crea el panel de asociación de tarjeta.
-     */
-    public AsociarTarjeta(UsuarioApp app, Usuario usuario) {
+    private OnActionListener listener;
+    
+    
+    public AsociarTarjeta(UsuarioApp app, Usuario usuario, OnActionListener listener) {
         this.app = app;
+        this.listener = listener;
         this.usuario = usuario;
         inicializar();
     }
@@ -35,6 +36,8 @@ public class AsociarTarjeta extends JPanel {
      * Inicializa el contenido del panel.
      */
     private void inicializar() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Asociar Tarjeta");
         setLayout(new BorderLayout());
 
         JPanel formulario = new JPanel();
@@ -69,8 +72,8 @@ public class AsociarTarjeta extends JPanel {
         JButton botonAsociar = new JButton("Asociar tarjeta");
         botonAsociar.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	try {
-            		long numero = Long.parseLong(numeroTarjetaField.getText());
+                try {
+                    long numero = Long.parseLong(numeroTarjetaField.getText());
                     String titular = titularField.getText();
                     String banco = bancoField.getText();
                     String marca = marcaField.getText();
@@ -85,16 +88,24 @@ public class AsociarTarjeta extends JPanel {
 
                     JOptionPane.showMessageDialog(AsociarTarjeta.this, "La tarjeta fue asociada correctamente");
                     limpiarCampos();
-	
-				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(AsociarTarjeta.this, "Ocurrió el siguiente error al asociar su tarjeta" + e2);
-				}
+                    listener.onAction();
+                    
+                    // TODO: Ocultarla.
+                    dispose();
+
+                } catch (Exception e2) {
+                    JOptionPane.showMessageDialog(AsociarTarjeta.this, "Ocurrió el siguiente error al asociar su tarjeta" + e2);
+                }
             }
         });
 
         formulario.add(botonAsociar);
 
         add(formulario, BorderLayout.CENTER);
+
+        pack();
+        setLocationRelativeTo(null);
+        setVisible(true);
     }
 
     /**
@@ -108,4 +119,5 @@ public class AsociarTarjeta extends JPanel {
         fechaField.setText("");
         codigoField.setText("");
     }
+
 }

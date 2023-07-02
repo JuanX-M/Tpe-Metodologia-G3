@@ -137,6 +137,14 @@ public class Viaje {
     			asientos.get(i).reservar(pasajero);
     	}
     }
+
+
+	public void cancelarReserva(int nroAsiento) {
+		for (int i = 0; i< asientos.size();i++) {
+    		if (asientos.get(i).getNumero() == nroAsiento)
+    			asientos.get(i).cancelar();
+    	}
+	}
     
     
 

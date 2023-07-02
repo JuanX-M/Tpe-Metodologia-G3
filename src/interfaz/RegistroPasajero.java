@@ -1,8 +1,8 @@
 package interfaz;
 
+
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
 
 import plataforma.CondicionMismoDni;
 import plataforma.Usuario;
@@ -45,12 +44,16 @@ public class RegistroPasajero extends JFrame {
     }
 
     private void initialize() {
-        //setLayout(new GridLayout(7, 2));
-        
+        // setLayout(new GridLayout(7, 2));
+
         JPanel dniPanel = new JPanel();
         dniPanel.setLayout(new BorderLayout());
+        JPanel dniInput = new JPanel();
         JLabel labelDNI = new JLabel("DNI:");
         campoDNI = new JTextField();
+        campoDNI.setColumns(20); // Increase the size of the DNI text field
+        dniInput.add(labelDNI);
+        dniInput.add(campoDNI);
         JButton btnDNI = new JButton("Registrar pasajero");
 
         btnDNI.addActionListener(new ActionListener() {
@@ -71,16 +74,28 @@ public class RegistroPasajero extends JFrame {
             }
         });
 
-        dniPanel.add(labelDNI);
-        dniPanel.add(campoDNI);
-        dniPanel.add(btnDNI);
-        
+        dniPanel.add(dniInput, BorderLayout.CENTER);
+        dniPanel.add(btnDNI, BorderLayout.SOUTH);
+
         JPanel agregarPanel = new JPanel();
         agregarPanel.setLayout(new BorderLayout());
+
         JLabel labelNombre = new JLabel("Nombre:");
         campoNombre = new JTextField();
+        campoNombre.setColumns(20);
+
+        JPanel nombrePanel = new JPanel();
+        nombrePanel.add(labelNombre);
+        nombrePanel.add(campoNombre);
+
         JLabel labelApellido = new JLabel("Apellido:");
         campoApellido = new JTextField();
+        campoApellido.setColumns(20);
+
+        JPanel apellidoPanel = new JPanel();
+        apellidoPanel.add(labelApellido);
+        apellidoPanel.add(campoApellido);
+
         JButton botonRegistrar = new JButton("Registrar pasajero");
 
         botonRegistrar.addActionListener(new ActionListener() {
@@ -102,30 +117,28 @@ public class RegistroPasajero extends JFrame {
             }
         });
 
-        agregarPanel.add(labelNombre);
-        agregarPanel.add(campoNombre);
-        agregarPanel.add(labelApellido);
-        agregarPanel.add(campoApellido);
-        agregarPanel.add(botonRegistrar);
-        
-        
-        panel.setLayout(new BorderLayout());
+        agregarPanel.add(nombrePanel, BorderLayout.NORTH);
+        agregarPanel.add(apellidoPanel, BorderLayout.CENTER);
+        // agregarPanel.add(campoApellido, BorderLayout.SOUTH);
+        agregarPanel.add(botonRegistrar, BorderLayout.PAGE_END);
+
+        // panel.setLayout(new BorderLayout());
         panel.add(dniPanel, ENTRAR_DNI);
         panel.add(agregarPanel, REGISTRAR_NUEVO_PASAJERO);
         add(panel);
-        
+
         setTitle("Registro de Pasajero");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
-        //setSize(400, 300);
-        //setLocationRelativeTo(null);
+        // setSize(400, 300);
+        // setLocationRelativeTo(null);
         setVisible(true);
     }
 
+    
     private void clearFields() {
         campoDNI.setText("");
         campoNombre.setText("");
         campoApellido.setText("");
     }
-
 }

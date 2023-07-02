@@ -25,9 +25,10 @@ public class TarjetaDeCredito {
         this.numero = numero;
         this.fechaVencimiento = fechaVencimiento;
         this.cvv = cvv;
-        //this.saldo = saldo;
         this.banco = banco;
         this.marca = marca;
+        this.saldo = 9000; // Inicializamos en un valor fijo para asi hacer más facilesl los tests
+        				// En un caso real, se comunicaria con la API de un Banco, etc.
     }
 
     public String getTitular() {
@@ -81,6 +82,7 @@ public class TarjetaDeCredito {
     }
 
     public void setSaldo(double saldo) {
+    	assert saldo > 0;
         this.saldo = saldo;
     }
 

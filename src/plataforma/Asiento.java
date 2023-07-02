@@ -5,7 +5,7 @@ public class Asiento {
     private int numero;
     private boolean reservado;
     private Usuario pasajero;
-    private static int contador=0;
+    private static int contador = 0;
 
 
     public Asiento(){
@@ -23,8 +23,11 @@ public class Asiento {
     }
 
     public void reservar(Usuario u) {
-        this.reservado = true;
-        this.pasajero = u;
+    	if (!this.isReservado())
+    	{
+            this.reservado = true;
+            this.pasajero = u;	
+    	}
     }
 
     @Override
@@ -37,4 +40,9 @@ public class Asiento {
     public String toString() {
         return "NroAsiento: "+this.numero;
     }
+
+	public void cancelar() {
+		pasajero = null;
+		this.reservado = false;
+	}
 }
