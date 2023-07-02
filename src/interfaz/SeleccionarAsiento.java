@@ -68,6 +68,10 @@ public class SeleccionarAsiento extends JPanel implements OnActionListener {
         // Crear y configurar el botón de compra
         comprarButton = new JButton("Comprar");
         comprarButton.addActionListener(e -> {
+        	if (this.compra.getCantAsientos() == 0) {
+            	JOptionPane.showMessageDialog(SeleccionarAsiento.this, "Selecciona al menos un asiento para confirmar la compra ");
+            	return;
+        	}
         	if (!app.getUsuarioLogeado().tieneTarjeta())
         	{
                 AsociarTarjeta asociarTarjetaPanel = new AsociarTarjeta(app, this.app.getUsuarioLogeado(), this);
