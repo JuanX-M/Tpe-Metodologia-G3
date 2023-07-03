@@ -2,6 +2,7 @@ package plataforma;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.ListIterator;
 public class Viaje {
     private String origen;
     private String destino;
@@ -131,19 +132,30 @@ public class Viaje {
     	return res;
     }
     
-    public void reservarAsiento(int nroAsiento, Usuario pasajero) {
-    	for (int i = 0; i< asientos.size();i++) {
-    		if (asientos.get(i).getNumero() == nroAsiento)
-    			asientos.get(i).reservar(pasajero);
-    	}
+    public Asiento buscarAsiento(int nroAsiento) {
+        ListIterator<Asiento> iterator = asientos.listIterator();
+        while (iterator.hasNext()) {
+            Asiento asiento = iterator.next();
+            if (asiento.getNumero() == nroAsiento) {
+                return asiento;
+            }
+        }
+        return null;
     }
 
-
+    
+    
+    public void reservarAsiento(int nroAsiento, Usuario pasajero) {
+    	buscarAsiento(nroAsiento).reservar(pasajero);
+		Asiento asiento = buscarAsiento(nroAsiento);
+		if (asiento != null)
+			asiento.reservar(pasajero);
+    }
+    
 	public void cancelarReserva(int nroAsiento) {
-		for (int i = 0; i< asientos.size();i++) {
-    		if (asientos.get(i).getNumero() == nroAsiento)
-    			asientos.get(i).cancelar();
-    	}
+		Asiento asiento = buscarAsiento(nroAsiento);
+		if (asiento != null)
+			asiento.cancelar();
 	}
     
     

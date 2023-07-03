@@ -62,9 +62,9 @@ public class EmpresaTransporte {
     
     public void agregarReserva(Compra c, Usuario pasajero) {
     	reservas.add(c);
-        for(Asiento aa : c.getAsientos()){
-            c.getViaje().reservarAsiento(aa.getNumero(), pasajero);
-        }
+        //for(Asiento aa : c.getAsientos()){
+        //    c.getViaje().reservarAsiento(aa.getNumero(), pasajero);
+        //}
     }
     
 }

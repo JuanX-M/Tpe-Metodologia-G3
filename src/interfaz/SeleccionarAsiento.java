@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,7 +18,6 @@ import plataforma.Viaje;
 
 public class SeleccionarAsiento extends JPanel implements OnActionListener {
     private JButton comprarButton;
-    private JComboBox<String> asientosComboBox;
     private Compra compra;
     private UsuarioApp app;
     private Viaje viajeSelec;
@@ -49,12 +47,7 @@ public class SeleccionarAsiento extends JPanel implements OnActionListener {
                 asientoBtn.setBackground(Color.RED);
             } else {
                 asientoBtn.addActionListener(e -> {
-                    Asiento asientoSeleccionado = a;
-                    if (asientoSeleccionado.isReservado() || asientoBtn.getBackground() == Color.GREEN) {
-                        deshacerSeleccion(asientoBtn, asientoSeleccionado);
-                    } else {
-                        seleccionarAsiento(asientoBtn, asientoSeleccionado);
-                    }
+                	seleccionarModo(asientoBtn, a);
                 });
             }
             leftPanel.add(asientoBtn);
@@ -68,48 +61,58 @@ public class SeleccionarAsiento extends JPanel implements OnActionListener {
         // Crear y configurar el botón de compra
         comprarButton = new JButton("Comprar");
         comprarButton.addActionListener(e -> {
-        	if (this.compra.getCantAsientos() == 0) {
-            	JOptionPane.showMessageDialog(SeleccionarAsiento.this, "Selecciona al menos un asiento para confirmar la compra ");
-            	return;
-        	}
-        	if (!app.getUsuarioLogeado().tieneTarjeta())
-        	{
-                AsociarTarjeta asociarTarjetaPanel = new AsociarTarjeta(app, this.app.getUsuarioLogeado(), this);
-                //vista.actualizarPanel(asociarTarjetaPanel, Vista.ASOCIAR_TARJETA);
-                //vista.mostrar(Vista.ASOCIAR_TARJETA);
-        	}
-        	else
-        	{
-        		this.confirmarCompra();
-        	}
-        	
+        	comprar();
         });
         add(comprarButton, BorderLayout.SOUTH);
     }
     
+    
+    private void comprar()
+    {
+    	if (this.compra.getCantAsientos() == 0) {
+        	JOptionPane.showMessageDialog(SeleccionarAsiento.this, "Selecciona al menos un asiento para confirmar la compra ");
+        	return;
+    	}
 
-		private void deshacerSeleccion(JButton boton, Asiento asiento) {
-		    boton.setBackground(null);
-		    viajeSelec.cancelarReserva(asiento.getNumero());
-		    compra.removeAsiento(asiento);
-		    actualizarTexto();
-		}
-		
-		private void seleccionarAsiento(JButton boton, Asiento asiento) {
-		    int numeroAsiento = asiento.getNumero();
-		    boton.setBackground(Color.GREEN);
-		    if (compra.getCantAsientos() >= 1) {
-		        RegistroPasajero reg = new RegistroPasajero(app, vista);
-		        Usuario personaAsiento = reg.getPersonaAsiento();
-		        if (personaAsiento != null) {
-		        	viajeSelec.reservarAsiento(numeroAsiento, personaAsiento);
-		        }
-		    } else {
-		    	viajeSelec.reservarAsiento(numeroAsiento, app.getUsuarioLogeado());
-		    }
-		    compra.addAsiento(asiento);
-		    actualizarTexto();
-		}
+    	Usuario comprador = compra.getComprador();
+    	if (!comprador.tieneTarjeta())
+            new AsociarTarjeta(app, comprador, this);
+    	else
+    		this.confirmarCompra();
+    }
+    
+
+	private void seleccionarModo(JButton asientoBtn, Asiento asientoSeleccionado)
+	{
+        if (asientoSeleccionado.isReservado()) {
+            deshacerSeleccion(asientoBtn, asientoSeleccionado);
+        } else {
+            seleccionarAsiento(asientoBtn, asientoSeleccionado);
+        }
+        actualizarTexto();
+	}
+
+
+	private void deshacerSeleccion(JButton boton, Asiento asiento) {
+	    boton.setBackground(null);
+	    viajeSelec.cancelarReserva(asiento.getNumero());
+	    compra.removeAsiento(asiento);
+	}
+	
+	private void seleccionarAsiento(JButton boton, Asiento asiento) {
+	    int numeroAsiento = asiento.getNumero();
+	    boton.setBackground(Color.GREEN);
+	    
+	    Usuario pasajero = null;
+	    if (compra.getCantAsientos() >= 1) {
+	        RegistroPasajero reg = new RegistroPasajero(app, vista);
+	        pasajero = reg.getPersonaAsiento();
+	    } else
+	    	pasajero = app.getUsuarioLogeado();
+	    
+	    viajeSelec.reservarAsiento(numeroAsiento, pasajero);
+	    compra.addAsiento(asiento);
+	}
     
     public void actualizarTexto()
     {
@@ -121,9 +124,7 @@ public class SeleccionarAsiento extends JPanel implements OnActionListener {
     	try {
         	this.app.confirmarCompra(this.viajeSelec.getOmnibus().getNombreEmpresa(), compra);
         	JOptionPane.showMessageDialog(SeleccionarAsiento.this, "Se ha realizado exitosamente la compra! ");
-        	vista.mostrar(Vista.BUSCAR_VIAJE);
-        	// se le pide la tarjeta en caso de que no la tenga asociada
-        	// se procede a confirmar la compra	
+        	vista.mostrar(Vista.BUSCAR_VIAJE);	
 		} catch (Exception e2) {
 			JOptionPane.showMessageDialog(SeleccionarAsiento.this, "Ocurrió el siguiente error en la compra: " + e2);
 		}

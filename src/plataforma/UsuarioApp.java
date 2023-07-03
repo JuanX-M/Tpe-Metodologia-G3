@@ -196,26 +196,5 @@ public class UsuarioApp {
         EmpresaTransporte e = p.buscarEmpresa(nombreEmpresa);
         e.agregarReserva(c, comprador);
         comprador.registrarCompra(c);
-        
-        //imprimimos por pantalla
-        /*System.out.println("Viaje: "+ c.getViaje());
-        c.imprimir();
-        System.out.println(c.getPasajero().getMetodoPago());
-        System.out.println("Desea confirmar la compra? Y/N");
-        Scanner ss = new Scanner(System.in);
-        String aux = ss.nextLine();
-        if(aux.equals("Y")){
-            // se descuenta el precio del viaje al usuario
-            if(c.getPasajero().getMetodoPago().getSaldo() <= c.getViaje().getPrecio()) {
-                c.getPasajero().getMetodoPago().setSaldo(c.getPasajero().getMetodoPago().getSaldo() - c.getViaje().getPrecio());
-                EmpresaTransporte e = p.buscarEmpresa(nombreEmpresa);
-                e.agregarReserva(c);
-                System.out.println("transaccion realizada, pasajes enviado por mail");
-            }
-            else {
-                System.out.println("no se pudo confirmar la compra: saldo insuficiente");
-            }
-        }
-        */
     }
 }
